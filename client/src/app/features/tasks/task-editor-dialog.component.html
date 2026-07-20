@@ -1,0 +1,115 @@
+<h2 mat-dialog-title>Edit task</h2>
+
+<form [formGroup]="form" (ngSubmit)="save()">
+  <mat-dialog-content class="editor-content">
+    @if (!showDeleteConfirm()) {
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Title</mat-label>
+        <input matInput formControlName="title" required data-testid="title-input" />
+        @if (form.controls.title.invalid && form.controls.title.touched) {
+          <mat-error>Title is required</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Description</mat-label>
+        <textarea matInput formControlName="description" rows="4" data-testid="description-input"></textarea>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Project</mat-label>
+        <mat-select
+          formControlName="projectId"
+          data-testid="project-select"
+          (selectionChange)="onProjectSelectionChange($event.value)"
+        >
+          <mat-option [value]="null">No project</mat-option>
+          @for (project of projects; track project.id) {
+            <mat-option [value]="project.id">{{ project.name }}</mat-option>
+          }
+          <mat-option [value]="addNewProjectValue">+ Add new project…</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      @if (showAddProject()) {
+        <div class="inline-add-project">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>New project name</mat-label>
+            <input
+              matInput
+              [ngModel]="newProjectName()"
+              (ngModelChange)="newProjectName.set($event)"
+              [ngModelOptions]="{ standalone: true }"
+              data-testid="new-project-input"
+            />
+          </mat-form-field>
+          <div class="inline-add-project-actions">
+            <button
+              type="button"
+              mat-stroked-button
+              color="primary"
+              [disabled]="!newProjectName().trim() || isCreatingProject()"
+              (click)="confirmAddProject()"
+              data-testid="confirm-add-project"
+            >
+              Add project
+            </button>
+            <button type="button" mat-button (click)="cancelAddProject()">Cancel</button>
+          </div>
+        </div>
+      }
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Priority</mat-label>
+        <mat-select formControlName="priority" data-testid="priority-select">
+          @for (option of priorityOptions; track option.label) {
+            <mat-option [value]="option.value">{{ option.label }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    } @else {
+      <p class="delete-confirm-text">Are you sure you want to delete this task? This cannot be undone.</p>
+    }
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    @if (!showDeleteConfirm()) {
+      <button
+        type="button"
+        mat-button
+        color="warn"
+        (click)="requestDelete()"
+        data-testid="delete-button"
+      >
+        <mat-icon>delete</mat-icon>
+        Delete
+      </button>
+      <span class="spacer"></span>
+      <button type="button" mat-button (click)="cancel()">Cancel</button>
+      <button
+        type="submit"
+        mat-flat-button
+        color="primary"
+        [disabled]="form.invalid || isSaving()"
+        data-testid="save-button"
+      >
+        Save
+      </button>
+    } @else {
+      <span class="spacer"></span>
+      <button type="button" mat-button (click)="cancelDelete()" data-testid="cancel-delete-button">
+        Cancel
+      </button>
+      <button
+        type="button"
+        mat-flat-button
+        color="warn"
+        [disabled]="isDeleting()"
+        (click)="confirmDelete()"
+        data-testid="confirm-delete-button"
+      >
+        Yes, delete
+      </button>
+    }
+  </mat-dialog-actions>
+</form>

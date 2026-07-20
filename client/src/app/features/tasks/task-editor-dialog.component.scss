@@ -1,0 +1,39 @@
+.editor-content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-top: 4px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.inline-add-project {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: -4px 0 8px;
+  padding: 12px;
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.inline-add-project-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.delete-confirm-text {
+  margin: 8px 0 16px;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+mat-dialog-actions {
+  display: flex;
+  align-items: center;
+}
