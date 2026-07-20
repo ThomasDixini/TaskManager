@@ -1,7 +1,7 @@
 ---
 id: 201
 title: EF Core entities, DbContext, Postgres wiring, and initial migration
-status: in-progress
+status: done
 wave: 2
 depends_on: [101]
 priority: high
@@ -95,12 +95,12 @@ These must serialize to/from JSON as their string names (`"ToDo"`, `"InProgress"
 
 ## Acceptance criteria
 
-- [ ] `server/Entities/Project.cs`, `server/Entities/TaskItem.cs`, `server/Entities/Enums.cs` exist matching the shapes specified above exactly (field names and types matter — later tasks depend on them).
-- [ ] `server/Data/AppDbContext.cs` exists with `DbSet<Project> Projects` and `DbSet<TaskItem> Tasks`, and the FK/index configuration described above.
-- [ ] `dotnet ef migrations add InitialCreate` has been run and `server/Migrations/` contains the generated migration files, checked in.
-- [ ] With Postgres running via `docker compose up -d`, `dotnet run` from `server/` starts successfully and auto-applies the migration, creating the `projects` and `tasks` tables (or `Projects`/`Tasks`, per EF Core's default naming — either is fine as long as it's consistent) in the `kanban` database.
-- [ ] Enums serialize as strings (e.g. `"ToDo"`, `"Medium"`) in JSON, not integers — verifiable once any endpoint returns a `TaskItem`-derived response (a later task will add the first such endpoint; for this task, it's sufficient that the `JsonStringEnumConverter` is registered in `Program.cs`).
-- [ ] The app still returns 404 (not a crash) for undefined routes, and CORS/exception-handling from task 101 remain intact.
+- [x] `server/Entities/Project.cs`, `server/Entities/TaskItem.cs`, `server/Entities/Enums.cs` exist matching the shapes specified above exactly (field names and types matter — later tasks depend on them).
+- [x] `server/Data/AppDbContext.cs` exists with `DbSet<Project> Projects` and `DbSet<TaskItem> Tasks`, and the FK/index configuration described above.
+- [x] `dotnet ef migrations add InitialCreate` has been run and `server/Migrations/` contains the generated migration files, checked in.
+- [x] With Postgres running via `docker compose up -d`, `dotnet run` from `server/` starts successfully and auto-applies the migration, creating the `projects` and `tasks` tables (or `Projects`/`Tasks`, per EF Core's default naming — either is fine as long as it's consistent) in the `kanban` database.
+- [x] Enums serialize as strings (e.g. `"ToDo"`, `"Medium"`) in JSON, not integers — verifiable once any endpoint returns a `TaskItem`-derived response (a later task will add the first such endpoint; for this task, it's sufficient that the `JsonStringEnumConverter` is registered in `Program.cs`).
+- [x] The app still returns 404 (not a crash) for undefined routes, and CORS/exception-handling from task 101 remain intact.
 
 ## Out of scope
 
