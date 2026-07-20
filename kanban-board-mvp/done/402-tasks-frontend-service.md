@@ -1,7 +1,7 @@
 ---
 id: 402
 title: Tasks frontend model + signals service
-status: in-progress
+status: done
 wave: 4
 depends_on: [302]
 priority: high
@@ -98,14 +98,14 @@ This exact public surface is what the board component and task editor dialog (la
 
 ## Acceptance criteria
 
-- [ ] `Task`, `BoardColumn`, `TaskPriority` types match the shapes specified above.
-- [ ] `TaskService.tasks` is a readable signal, starting as `[]`.
-- [ ] `load()` (backend running) populates `tasks()` from `GET /api/tasks`; `load(5)` calls `GET /api/tasks?projectId=5`.
-- [ ] `create('New task')` performs `POST /api/tasks`, and after resolving, `tasks()` includes the new task with `column: 'ToDo'`.
-- [ ] `update(id, {...})` performs `PUT /api/tasks/{id}`, and after resolving, the matching entry in `tasks()` reflects the new title/description/projectId/priority.
-- [ ] `delete(id)` performs `DELETE /api/tasks/{id}`, and after resolving, `tasks()` no longer contains that task.
-- [ ] `move(id, 'InProgress', 0)` performs `PATCH /api/tasks/{id}/move`, and after resolving, the matching entry in `tasks()` has `column: 'InProgress'` and `position: 0`.
-- [ ] No compile errors; `ng build` (or `ng serve`) succeeds with this file added.
+- [x] `Task`, `BoardColumn`, `TaskPriority` types match the shapes specified above.
+- [x] `TaskService.tasks` is a readable signal, starting as `[]`.
+- [x] `load()` (backend running) populates `tasks()` from `GET /api/tasks`; `load(5)` calls `GET /api/tasks?projectId=5`.
+- [x] `create('New task')` performs `POST /api/tasks`, and after resolving, `tasks()` includes the new task with `column: 'ToDo'`.
+- [x] `update(id, {...})` performs `PUT /api/tasks/{id}`, and after resolving, the matching entry in `tasks()` reflects the new title/description/projectId/priority.
+- [x] `delete(id)` performs `DELETE /api/tasks/{id}`, and after resolving, `tasks()` no longer contains that task.
+- [x] `move(id, 'InProgress', 0)` performs `PATCH /api/tasks/{id}/move`, and after resolving, the matching entry in `tasks()` has `column: 'InProgress'` and `position: 0`.
+- [x] No compile errors; `ng build` (or `ng serve`) succeeds with this file added.
 
 ## Out of scope
 
