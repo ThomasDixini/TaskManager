@@ -1,7 +1,7 @@
 ---
 id: 601
 title: Board component (columns, quick-add, drag-and-drop, project filter)
-status: in-progress
+status: done
 wave: 6
 depends_on: [401, 402, 501, 502]
 priority: high
@@ -85,14 +85,14 @@ export interface TaskEditorDialogData { task: Task; }
 
 ## Acceptance criteria
 
-- [ ] Navigating to `http://localhost:4200/` (with the backend running) shows three columns labeled To Do, In Progress, Done.
-- [ ] Typing a title into the To Do quick-add input and submitting creates a new task that appears in the To Do column (verify via the UI and/or that `GET /api/tasks` on the backend now includes it).
-- [ ] Clicking a card opens the task editor dialog (`TaskEditorDialogComponent`) pre-filled with that task's data; saving changes in the dialog updates the card's displayed title/project/priority on the board without a full page reload.
-- [ ] Dragging a card from one column to another persists the move (verify the task's column changed via a subsequent `GET /api/tasks` or by reloading the page and seeing it stay in the new column).
-- [ ] Dragging a card to a new position within the same column persists the reordering (verify via reload that the new order sticks).
-- [ ] Selecting a project in the filter dropdown shows only that project's tasks across all three columns; selecting "All" shows every task again.
-- [ ] Each card displays its project name (if set) and priority badge (if set), per `TaskCardComponent`'s existing rendering.
-- [ ] `ng build` succeeds and `ng serve` + navigating to `http://localhost:4200` shows a working board with no console errors during normal use (add/edit/delete/drag/filter).
+- [x] Navigating to `http://localhost:4200/` (with the backend running) shows three columns labeled To Do, In Progress, Done.
+- [x] Typing a title into the To Do quick-add input and submitting creates a new task that appears in the To Do column (verify via the UI and/or that `GET /api/tasks` on the backend now includes it).
+- [x] Clicking a card opens the task editor dialog (`TaskEditorDialogComponent`) pre-filled with that task's data; saving changes in the dialog updates the card's displayed title/project/priority on the board without a full page reload.
+- [x] Dragging a card from one column to another persists the move (verify the task's column changed via a subsequent `GET /api/tasks` or by reloading the page and seeing it stay in the new column).
+- [x] Dragging a card to a new position within the same column persists the reordering (verify via reload that the new order sticks).
+- [x] Selecting a project in the filter dropdown shows only that project's tasks across all three columns; selecting "All" shows every task again.
+- [x] Each card displays its project name (if set) and priority badge (if set), per `TaskCardComponent`'s existing rendering.
+- [x] `ng build` succeeds and `ng serve` + navigating to `http://localhost:4200` shows a working board with no console errors during normal use (add/edit/delete/drag/filter).
 
 ## Out of scope
 

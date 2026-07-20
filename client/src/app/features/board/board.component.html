@@ -1,0 +1,55 @@
+<div class="board">
+  <div class="board__toolbar">
+    <mat-form-field appearance="outline" class="board__filter">
+      <mat-label>Project</mat-label>
+      <mat-select [(ngModel)]="selectedProjectId" (selectionChange)="onFilterChange()">
+        <mat-option [value]="null">All projects</mat-option>
+        @for (project of projects(); track project.id) {
+          <mat-option [value]="project.id">{{ project.name }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="board__columns" cdkDropListGroup>
+    @for (column of columns; track column.id) {
+      <div class="board-column">
+        <div class="board-column__header">{{ column.label }}</div>
+
+        <div
+          class="board-column__list"
+          cdkDropList
+          [id]="column.id"
+          [cdkDropListData]="tasksFor(column.id)"
+          (cdkDropListDropped)="onDrop($event)"
+        >
+          @for (task of tasksFor(column.id); track task.id) {
+            <div class="board-column__item" cdkDrag [cdkDragData]="task">
+              <app-task-card
+                [task]="task"
+                [projectName]="projectNameFor(task)"
+                (cardClick)="openEditor($event)"
+              ></app-task-card>
+            </div>
+          }
+        </div>
+
+        @if (column.id === 'ToDo') {
+          <div class="board-column__quick-add">
+            <mat-form-field appearance="outline" class="board-column__quick-add-field">
+              <input
+                matInput
+                placeholder="Add a task..."
+                [(ngModel)]="quickAddTitle"
+                (keydown.enter)="onQuickAddSubmit()"
+              />
+            </mat-form-field>
+            <button mat-icon-button color="primary" (click)="onQuickAddSubmit()" aria-label="Add task">
+              +
+            </button>
+          </div>
+        }
+      </div>
+    }
+  </div>
+</div>
