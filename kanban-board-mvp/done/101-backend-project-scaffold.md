@@ -1,7 +1,7 @@
 ---
 id: 101
 title: Backend project scaffold (ASP.NET Core Web API)
-status: in-progress
+status: done
 wave: 1
 depends_on: []
 priority: high
@@ -48,12 +48,12 @@ This task creates the bare backend project skeleton: a buildable, runnable ASP.N
 
 ## Acceptance criteria
 
-- [ ] `dotnet build` succeeds from inside `server/` with no errors.
-- [ ] `dotnet run` starts the API and it listens on `http://localhost:5080`.
-- [ ] The API returns a 404 (not a crash) when hitting an undefined route like `http://localhost:5080/api/anything`, proving the middleware pipeline (controllers + routing) is wired up correctly.
-- [ ] `Program.cs` registers a CORS policy named `AllowFrontend` allowing `http://localhost:4200`.
-- [ ] `Program.cs` calls `AddProblemDetails()` and `UseExceptionHandler()` (or equivalent net8+ built-in exception-to-ProblemDetails pipeline).
-- [ ] No `WeatherForecast` or other template sample code remains.
+- [x] `dotnet build` succeeds from inside `server/` with no errors.
+- [x] `dotnet run` starts the API and it listens on `http://localhost:5080`.
+- [x] The API returns a 404 (not a crash) when hitting an undefined route like `http://localhost:5080/api/anything`, proving the middleware pipeline (controllers + routing) is wired up correctly.
+- [x] `Program.cs` registers a CORS policy named `AllowFrontend` allowing `http://localhost:4200`.
+- [x] `Program.cs` calls `AddProblemDetails()` and `UseExceptionHandler()` (or equivalent net8+ built-in exception-to-ProblemDetails pipeline).
+- [x] No `WeatherForecast` or other template sample code remains.
 
 ## Out of scope
 
