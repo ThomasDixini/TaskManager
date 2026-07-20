@@ -1,7 +1,7 @@
 ---
 id: 401
 title: Projects frontend model + signals service
-status: in-progress
+status: done
 wave: 4
 depends_on: [301]
 priority: high
@@ -67,11 +67,11 @@ This exact public surface (`projects` signal, `load()`, `create(name)`) is what 
 
 ## Acceptance criteria
 
-- [ ] `Project` interface matches `{ id: number, name: string }`.
-- [ ] `ProjectService.projects` is a readable signal, starting as `[]`.
-- [ ] Calling `load()` (with the backend running and reachable) populates `projects()` with the array returned by `GET /api/projects`.
-- [ ] Calling `create('New Project')` performs a `POST /api/projects`, and after the returned promise resolves, `projects()` includes the newly created project alongside any previously loaded ones.
-- [ ] No compile errors; `ng build` (or `ng serve`) succeeds with this file added.
+- [x] `Project` interface matches `{ id: number, name: string }`.
+- [x] `ProjectService.projects` is a readable signal, starting as `[]`.
+- [x] Calling `load()` (with the backend running and reachable) populates `projects()` with the array returned by `GET /api/projects`.
+- [x] Calling `create('New Project')` performs a `POST /api/projects`, and after the returned promise resolves, `projects()` includes the newly created project alongside any previously loaded ones.
+- [x] No compile errors; `ng build` (or `ng serve`) succeeds with this file added.
 
 ## Out of scope
 

@@ -110,8 +110,8 @@ Pinned here for human review; each task file restates the parts it needs.
 | ~~201~~ | 2 | ~~EF Core entities, DbContext, migration~~ | high | M | 101 |
 | ~~301~~ | 3 | ~~Projects API~~ | high | S | 201 |
 | ~~302~~ | 3 | ~~Tasks API (CRUD + move)~~ | high | M | 201 |
-| 401 | 4 | Projects frontend service | high | S | 301 |
-| 402 | 4 | Tasks frontend service | high | M | 302 |
+| ~~401~~ | 4 | ~~Projects frontend service~~ | high | S | 301 |
+| ~~402~~ | 4 | ~~Tasks frontend service~~ | high | M | 302 |
 | 501 | 5 | Task editor dialog | high | M | 401, 402 |
 | 502 | 5 | Task card component | medium | S | 402 |
 | 601 | 6 | Board component (integration) | high | M | 401, 402, 501, 502 |
@@ -130,3 +130,5 @@ _(empty)_
 | 201 | 2 | EF Core entities, DbContext, migration |
 | 301 | 3 | Projects API |
 | 302 | 3 | Tasks API (CRUD + move) |
+| 401 | 4 | Projects frontend service |
+| 402 | 4 | Tasks frontend service |
