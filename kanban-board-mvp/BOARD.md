@@ -105,7 +105,7 @@ Pinned here for human review; each task file restates the parts it needs.
 | ID | Wave | Task | Priority | Estimate | Depends on |
 |----|------|------|----------|----------|------------|
 | ~~101~~ | 1 | ~~Backend project scaffold~~ | high | M | – |
-| 102 | 1 | Frontend project scaffold | high | M | – |
+| ~~102~~ | 1 | ~~Frontend project scaffold~~ | high | M | – |
 | 103 | 1 | Docker Compose + env + README | medium | S | – |
 | 201 | 2 | EF Core entities, DbContext, migration | high | M | 101 |
 | 301 | 3 | Projects API | high | S | 201 |
@@ -125,3 +125,4 @@ _(empty)_
 | ID | Wave | Task |
 |----|------|------|
 | 101 | 1 | Backend project scaffold |
+| 102 | 1 | Frontend project scaffold |

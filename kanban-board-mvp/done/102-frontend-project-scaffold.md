@@ -1,7 +1,7 @@
 ---
 id: 102
 title: Frontend project scaffold (Angular + Material + CDK)
-status: in-progress
+status: done
 wave: 1
 depends_on: []
 priority: high
@@ -59,13 +59,13 @@ This task creates the bare Angular application skeleton: a runnable `ng serve` a
 
 ## Acceptance criteria
 
-- [ ] `npm install` succeeds inside `client/`.
-- [ ] `ng serve` starts the dev server on port 4200 without build errors.
-- [ ] Navigating to `http://localhost:4200` in a browser loads with no console errors (a blank page is expected since no routes/components exist yet).
-- [ ] `@angular/material` and `@angular/cdk` are present in `client/package.json` dependencies.
-- [ ] `client/src/environments/environment.ts` and `environment.development.ts` both export `apiBaseUrl: 'http://localhost:5080/api'`.
-- [ ] `client/src/app/app.config.ts` provides router, HttpClient, and Material animations.
-- [ ] `client/src/app/app.component.html` contains only a router outlet (no default CLI welcome content).
+- [x] `npm install` succeeds inside `client/`.
+- [x] `ng serve` starts the dev server on port 4200 without build errors.
+- [x] Navigating to `http://localhost:4200` in a browser loads with no console errors (a blank page is expected since no routes/components exist yet).
+- [x] `@angular/material` and `@angular/cdk` are present in `client/package.json` dependencies.
+- [x] `client/src/environments/environment.ts` and `environment.development.ts` both export `apiBaseUrl: 'http://localhost:5080/api'`.
+- [x] `client/src/app/app.config.ts` provides router, HttpClient, and Material animations.
+- [x] `client/src/app/app.component.html` contains only a router outlet (no default CLI welcome content).
 
 ## Out of scope
 
