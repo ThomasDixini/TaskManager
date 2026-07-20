@@ -1,7 +1,7 @@
 ---
 id: 601
 title: Board component (columns, quick-add, drag-and-drop, project filter)
-status: backlog
+status: in-progress
 wave: 6
 depends_on: [401, 402, 501, 502]
 priority: high
