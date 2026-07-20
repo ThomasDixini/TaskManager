@@ -1,4 +1,5 @@
 using Kanban.Api.Data;
+using Kanban.Api.Services;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
 
@@ -33,6 +34,8 @@ builder.Services.AddCors(options =>
 
 // Global error handling: unhandled exceptions are converted to RFC 7807 ProblemDetails responses.
 builder.Services.AddProblemDetails();
+
+builder.Services.AddScoped<TaskPositionService>();
 
 var app = builder.Build();
 

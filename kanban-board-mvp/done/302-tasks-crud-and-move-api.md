@@ -1,7 +1,7 @@
 ---
 id: 302
 title: Tasks API (CRUD + move/reorder endpoint)
-status: in-progress
+status: done
 wave: 3
 depends_on: [201]
 priority: high
@@ -111,13 +111,13 @@ This `TaskDto` shape is the exact contract the frontend Tasks service (a later t
 
 ## Acceptance criteria
 
-- [ ] `POST /api/tasks` with `{ "title": "Fix bug" }` returns `201 Created` with a `TaskDto` where `column` is `"ToDo"`, `priority` and `description` are `null`, `projectId` is `null`, and `position` is `0` (if it's the first task) or one past the current max in ToDo.
-- [ ] `GET /api/tasks` returns all tasks ordered by column then position; `GET /api/tasks?projectId=1` returns only tasks with that project.
-- [ ] `PUT /api/tasks/{id}` updates title/description/projectId/priority and leaves `column`/`position` unchanged; returns `404` for a non-existent id.
-- [ ] `DELETE /api/tasks/{id}` removes the task and returns `204`; a subsequent `GET /api/tasks` no longer includes it; returns `404` for a non-existent id.
-- [ ] `PATCH /api/tasks/{id}/move` with `{ "column": "InProgress", "position": 0 }` moves the task to the top of In Progress, and any task previously at position 0+ in In Progress shifts down by one (verify via a subsequent `GET /api/tasks`); the moved task's title/description/projectId/priority are unchanged.
-- [ ] Moving a task within the same column (e.g. from position 2 to position 0) reorders the intervening tasks correctly with no duplicate or gapped positions in that column afterward.
-- [ ] After any move, positions within each affected column remain a contiguous 0-based sequence (no duplicates, no gaps).
+- [x] `POST /api/tasks` with `{ "title": "Fix bug" }` returns `201 Created` with a `TaskDto` where `column` is `"ToDo"`, `priority` and `description` are `null`, `projectId` is `null`, and `position` is `0` (if it's the first task) or one past the current max in ToDo.
+- [x] `GET /api/tasks` returns all tasks ordered by column then position; `GET /api/tasks?projectId=1` returns only tasks with that project.
+- [x] `PUT /api/tasks/{id}` updates title/description/projectId/priority and leaves `column`/`position` unchanged; returns `404` for a non-existent id.
+- [x] `DELETE /api/tasks/{id}` removes the task and returns `204`; a subsequent `GET /api/tasks` no longer includes it; returns `404` for a non-existent id.
+- [x] `PATCH /api/tasks/{id}/move` with `{ "column": "InProgress", "position": 0 }` moves the task to the top of In Progress, and any task previously at position 0+ in In Progress shifts down by one (verify via a subsequent `GET /api/tasks`); the moved task's title/description/projectId/priority are unchanged.
+- [x] Moving a task within the same column (e.g. from position 2 to position 0) reorders the intervening tasks correctly with no duplicate or gapped positions in that column afterward.
+- [x] After any move, positions within each affected column remain a contiguous 0-based sequence (no duplicates, no gaps).
 
 ## Out of scope
 
