@@ -1,0 +1,15 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: kanban-postgres
+    environment:
+      POSTGRES_DB: kanban
+      POSTGRES_USER: kanban
+      POSTGRES_PASSWORD: kanban_dev_password
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:

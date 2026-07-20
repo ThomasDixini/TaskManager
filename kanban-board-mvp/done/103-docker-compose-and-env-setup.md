@@ -1,7 +1,7 @@
 ---
 id: 103
 title: Docker Compose (Postgres) + environment setup + README
-status: in-progress
+status: done
 wave: 1
 depends_on: []
 priority: medium
@@ -59,10 +59,10 @@ Pin these values exactly — a later task (201, EF Core setup) will connect to P
 
 ## Acceptance criteria
 
-- [ ] `docker compose up -d` starts a Postgres 16 container named per the `postgres` service, reachable on `localhost:5433`, with database `kanban`, user `kanban`, password `kanban_dev_password`.
-- [ ] Data persists across `docker compose down` + `docker compose up -d` (named volume configured).
-- [ ] `.env.example` exists at the repo root and documents both the Postgres variables and `ConnectionStrings__Default`, with values matching exactly what's pinned above.
-- [ ] `README.md` exists at the repo root with clear, ordered steps to run Postgres, the API, and the frontend locally.
+- [x] `docker compose up -d` starts a Postgres 16 container named per the `postgres` service, reachable on `localhost:5433`, with database `kanban`, user `kanban`, password `kanban_dev_password`.
+- [x] Data persists across `docker compose down` + `docker compose up -d` (named volume configured).
+- [x] `.env.example` exists at the repo root and documents both the Postgres variables and `ConnectionStrings__Default`, with values matching exactly what's pinned above.
+- [x] `README.md` exists at the repo root with clear, ordered steps to run Postgres, the API, and the frontend locally.
 
 ## Out of scope
 
