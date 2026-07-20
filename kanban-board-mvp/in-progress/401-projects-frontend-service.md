@@ -1,7 +1,7 @@
 ---
 id: 401
 title: Projects frontend model + signals service
-status: backlog
+status: in-progress
 wave: 4
 depends_on: [301]
 priority: high
