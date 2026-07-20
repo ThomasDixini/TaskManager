@@ -1,7 +1,7 @@
 ---
 id: 501
 title: Task editor dialog (edit, inline project creation, delete)
-status: backlog
+status: in-progress
 wave: 5
 depends_on: [401, 402]
 priority: high
