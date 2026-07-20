@@ -1,7 +1,7 @@
 ---
 id: 101
 title: Backend project scaffold (ASP.NET Core Web API)
-status: backlog
+status: in-progress
 wave: 1
 depends_on: []
 priority: high

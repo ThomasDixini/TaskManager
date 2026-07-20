@@ -1,7 +1,7 @@
 ---
 id: 102
 title: Frontend project scaffold (Angular + Material + CDK)
-status: backlog
+status: in-progress
 wave: 1
 depends_on: []
 priority: high

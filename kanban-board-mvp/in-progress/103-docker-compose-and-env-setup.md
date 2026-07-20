@@ -1,7 +1,7 @@
 ---
 id: 103
 title: Docker Compose (Postgres) + environment setup + README
-status: backlog
+status: in-progress
 wave: 1
 depends_on: []
 priority: medium
