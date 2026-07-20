@@ -1,7 +1,7 @@
 ---
 id: 301
 title: Projects API (list + create)
-status: in-progress
+status: done
 wave: 3
 depends_on: [201]
 priority: high
@@ -64,10 +64,10 @@ This `ProjectDto` shape (`{ id: number, name: string }`) is the exact contract t
 
 ## Acceptance criteria
 
-- [ ] `GET /api/projects` returns `200 OK` with an empty array when no projects exist, and an array of `{ id, name }` objects once projects have been created.
-- [ ] `POST /api/projects` with `{ "name": "My Project" }` returns `201 Created` with the created project's `{ id, name }`, and a subsequent `GET /api/projects` includes it.
-- [ ] `POST /api/projects` with `{ "name": "" }` or missing `name` returns `400 Bad Request` with a `ProblemDetails`-shaped validation error body (ASP.NET Core's default for `[ApiController]` model validation failures).
-- [ ] Response JSON field names are exactly `id` and `name` (camelCase, ASP.NET Core's default JSON casing).
+- [x] `GET /api/projects` returns `200 OK` with an empty array when no projects exist, and an array of `{ id, name }` objects once projects have been created.
+- [x] `POST /api/projects` with `{ "name": "My Project" }` returns `201 Created` with the created project's `{ id, name }`, and a subsequent `GET /api/projects` includes it.
+- [x] `POST /api/projects` with `{ "name": "" }` or missing `name` returns `400 Bad Request` with a `ProblemDetails`-shaped validation error body (ASP.NET Core's default for `[ApiController]` model validation failures).
+- [x] Response JSON field names are exactly `id` and `name` (camelCase, ASP.NET Core's default JSON casing).
 
 ## Out of scope
 
