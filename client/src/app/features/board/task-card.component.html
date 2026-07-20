@@ -1,0 +1,13 @@
+<div class="task-card" (click)="onCardClick()">
+  <div class="task-card__title">{{ task.title }}</div>
+
+  <div class="task-card__meta">
+    @if (projectName) {
+      <span class="badge badge-project">{{ projectName }}</span>
+    }
+
+    @if (task.priority) {
+      <span class="badge priority-badge" [ngClass]="priorityClass">{{ task.priority }}</span>
+    }
+  </div>
+</div>

@@ -1,7 +1,7 @@
 ---
 id: 502
 title: Task card component (presentational)
-status: in-progress
+status: done
 wave: 5
 depends_on: [402]
 priority: medium
@@ -56,11 +56,11 @@ export interface Task {
 
 ## Acceptance criteria
 
-- [ ] `TaskCardComponent` renders the task's title.
-- [ ] When `projectName` is provided, a project badge/label showing that name is visible; when `null`, no project badge is rendered.
-- [ ] When `task.priority` is `'Low' | 'Medium' | 'High'`, a color-coded badge showing that priority is visible, with a distinct color per level; when `null`, no priority badge is rendered.
-- [ ] Clicking anywhere on the card emits `cardClick` with the `task` input value.
-- [ ] No compile errors; `ng build` succeeds with this component added (it doesn't need to be used anywhere yet — that's task 601's job).
+- [x] `TaskCardComponent` renders the task's title.
+- [x] When `projectName` is provided, a project badge/label showing that name is visible; when `null`, no project badge is rendered.
+- [x] When `task.priority` is `'Low' | 'Medium' | 'High'`, a color-coded badge showing that priority is visible, with a distinct color per level; when `null`, no priority badge is rendered.
+- [x] Clicking anywhere on the card emits `cardClick` with the `task` input value.
+- [x] No compile errors; `ng build` succeeds with this component added (it doesn't need to be used anywhere yet — that's task 601's job).
 
 ## Out of scope
 
