@@ -1,7 +1,7 @@
 ---
 id: 301
 title: Projects API (list + create)
-status: backlog
+status: in-progress
 wave: 3
 depends_on: [201]
 priority: high
