@@ -1,7 +1,7 @@
 ---
 id: 102
 title: Backend schema extension (Backlog column, due date, labels, subtasks, comments)
-status: backlog
+status: in-progress
 wave: 1
 depends_on: []
 priority: high

@@ -1,7 +1,7 @@
 ---
 id: 101
 title: Visual restyle (Sprout tokens, light theme)
-status: backlog
+status: in-progress
 wave: 1
 depends_on: []
 priority: high
