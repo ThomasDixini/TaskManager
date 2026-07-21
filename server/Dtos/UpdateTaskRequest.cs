@@ -10,4 +10,6 @@ public class UpdateTaskRequest
     public string? Description { get; set; }
     public int? ProjectId { get; set; }
     public Priority? Priority { get; set; }
+    public string? DueDate { get; set; }       // "yyyy-MM-dd" or null
+    public string[] LabelIds { get; set; } = Array.Empty<string>();
 }

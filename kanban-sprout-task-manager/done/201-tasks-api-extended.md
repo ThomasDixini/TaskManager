@@ -1,7 +1,7 @@
 ---
 id: 201
 title: Tasks API extended (due date, labels, counts, get-by-id)
-status: in-progress
+status: done
 wave: 2
 depends_on: [102]
 priority: high
@@ -101,15 +101,15 @@ Routes:
 
 ## Acceptance criteria
 
-- [ ] `GET /api/tasks/{id}` returns `200` with a `TaskDetailDto` including full `subtasks`/`comments` arrays (empty arrays if none) for an existing task, and `404` for a non-existent id.
-- [ ] `GET /api/tasks` response items include `dueDate`, `labelIds`, `subtaskTotal`, `subtaskDone`, `commentCount` fields with correct values (verify by creating a task, adding data via direct SQL if subtask/comment endpoints aren't built yet, and checking the list response reflects the counts).
-- [ ] `POST /api/tasks` with `{ "title": "x" }` still creates in `ToDo` at the end of that column (unchanged default).
-- [ ] `POST /api/tasks` with `{ "title": "x", "column": "Backlog" }` creates the task with `column: "Backlog"` and the correct end-of-column position.
-- [ ] `PUT /api/tasks/{id}` with `{ ..., "dueDate": "2026-08-01", "labelIds": ["bug", "chore"] }` updates both fields; a subsequent `GET /api/tasks/{id}` reflects `dueDate: "2026-08-01"` and `labelIds` containing exactly `["bug", "chore"]` (order-independent).
-- [ ] `PUT /api/tasks/{id}` with `"labelIds": []` clears all labels from the task.
-- [ ] `PUT /api/tasks/{id}` with `"dueDate": null` clears the due date.
-- [ ] Existing `DELETE` and `PATCH .../move` behavior is unchanged (spot-check both still work as before).
-- [ ] `dotnet build` succeeds.
+- [x] `GET /api/tasks/{id}` returns `200` with a `TaskDetailDto` including full `subtasks`/`comments` arrays (empty arrays if none) for an existing task, and `404` for a non-existent id.
+- [x] `GET /api/tasks` response items include `dueDate`, `labelIds`, `subtaskTotal`, `subtaskDone`, `commentCount` fields with correct values (verify by creating a task, adding data via direct SQL if subtask/comment endpoints aren't built yet, and checking the list response reflects the counts).
+- [x] `POST /api/tasks` with `{ "title": "x" }` still creates in `ToDo` at the end of that column (unchanged default).
+- [x] `POST /api/tasks` with `{ "title": "x", "column": "Backlog" }` creates the task with `column: "Backlog"` and the correct end-of-column position.
+- [x] `PUT /api/tasks/{id}` with `{ ..., "dueDate": "2026-08-01", "labelIds": ["bug", "chore"] }` updates both fields; a subsequent `GET /api/tasks/{id}` reflects `dueDate: "2026-08-01"` and `labelIds` containing exactly `["bug", "chore"]` (order-independent).
+- [x] `PUT /api/tasks/{id}` with `"labelIds": []` clears all labels from the task.
+- [x] `PUT /api/tasks/{id}` with `"dueDate": null` clears the due date.
+- [x] Existing `DELETE` and `PATCH .../move` behavior is unchanged (spot-check both still work as before).
+- [x] `dotnet build` succeeds.
 
 ## Out of scope
 
