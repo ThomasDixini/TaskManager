@@ -1,7 +1,7 @@
 ---
 id: 401
 title: Frontend Subtask model + service
-status: in-progress
+status: done
 wave: 4
 depends_on: [301]
 priority: high
@@ -57,10 +57,10 @@ This service is deliberately stateless (no signal, no cached list) — the calle
 
 ## Acceptance criteria
 
-- [ ] `Subtask` interface matches `{ id: number, text: string, done: boolean, position: number }`.
-- [ ] `create(taskId, 'Draft outline')` performs `POST /api/tasks/{taskId}/subtasks` with `{ text: 'Draft outline' }` and resolves with the created subtask (verify against the live backend).
-- [ ] `toggle(taskId, subtaskId, true)` performs `PATCH /api/tasks/{taskId}/subtasks/{subtaskId}` with `{ done: true }` and resolves with the updated subtask reflecting `done: true`.
-- [ ] `ng build` succeeds.
+- [x] `Subtask` interface matches `{ id: number, text: string, done: boolean, position: number }`.
+- [x] `create(taskId, 'Draft outline')` performs `POST /api/tasks/{taskId}/subtasks` with `{ text: 'Draft outline' }` and resolves with the created subtask (verify against the live backend).
+- [x] `toggle(taskId, subtaskId, true)` performs `PATCH /api/tasks/{taskId}/subtasks/{subtaskId}` with `{ done: true }` and resolves with the updated subtask reflecting `done: true`.
+- [x] `ng build` succeeds.
 
 ## Out of scope
 
