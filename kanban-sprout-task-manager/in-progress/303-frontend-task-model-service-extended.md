@@ -1,7 +1,7 @@
 ---
 id: 303
 title: Frontend Task model + service extended
-status: backlog
+status: in-progress
 wave: 3
 depends_on: [201]
 priority: high

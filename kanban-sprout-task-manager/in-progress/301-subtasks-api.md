@@ -1,7 +1,7 @@
 ---
 id: 301
 title: Subtasks API
-status: backlog
+status: in-progress
 wave: 3
 depends_on: [102, 201]
 priority: high

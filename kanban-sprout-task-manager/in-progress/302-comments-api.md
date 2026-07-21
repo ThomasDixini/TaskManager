@@ -1,7 +1,7 @@
 ---
 id: 302
 title: Comments API
-status: backlog
+status: in-progress
 wave: 3
 depends_on: [102, 201]
 priority: medium

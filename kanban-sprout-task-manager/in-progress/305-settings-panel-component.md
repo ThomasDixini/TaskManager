@@ -1,7 +1,7 @@
 ---
 id: 305
 title: Settings panel component
-status: backlog
+status: in-progress
 wave: 3
 depends_on: [203]
 priority: low

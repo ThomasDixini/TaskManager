@@ -1,7 +1,7 @@
 ---
 id: 304
 title: Frontend Label model + service
-status: backlog
+status: in-progress
 wave: 3
 depends_on: [202]
 priority: medium
