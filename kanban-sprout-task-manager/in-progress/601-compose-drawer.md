@@ -1,7 +1,7 @@
 ---
 id: 601
 title: Compose drawer (wire subtask list + comment feed)
-status: backlog
+status: in-progress
 wave: 6
 depends_on: [404, 501, 502]
 priority: high
