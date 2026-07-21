@@ -1,7 +1,7 @@
 ---
 id: 202
 title: Labels API
-status: backlog
+status: in-progress
 wave: 2
 depends_on: [102]
 priority: medium

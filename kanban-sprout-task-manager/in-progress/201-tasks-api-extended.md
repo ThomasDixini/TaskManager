@@ -1,7 +1,7 @@
 ---
 id: 201
 title: Tasks API extended (due date, labels, counts, get-by-id)
-status: backlog
+status: in-progress
 wave: 2
 depends_on: [102]
 priority: high
