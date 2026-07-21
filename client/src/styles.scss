@@ -74,3 +74,24 @@ h1, h2, h3 {
 }
 
 /* You can add global styles to this file, and also import other style files */
+
+// Sprout design tokens (dark / "dusk" theme) and density variants.
+// Applied via `data-theme` / `data-density` attributes set on the document
+// root by ThemeService (client/src/app/core/theme.service.ts).
+:root[data-theme="dusk"] {
+  --bg: #201B26;
+  --surface: #2A2431;
+  --surface-2: #322B3A;
+  --surface-3: #40384A;
+  --border: #3A3342;
+  --border-soft: #342E3C;
+  --ink: #F2ECF3;
+  --ink-2: #AEA3B7;
+  --sidebar-bg: #1A1620;
+  --tone-slate: #9A90A6;
+  --shadow-sm: 0 1px 2px rgba(0,0,0,.25);
+  --shadow-md: 0 6px 18px rgba(0,0,0,.32);
+  --shadow-lg: 0 22px 60px rgba(0,0,0,.5);
+}
+:root[data-density="compact"] { --card-pad: 11px; --card-gap: 8px; --col-gap: 13px; font-size: 14px; }
+:root[data-density="comfy"] { --card-pad: 19px; --card-gap: 15px; --col-gap: 24px; font-size: 15.5px; }

@@ -1,7 +1,7 @@
 ---
 id: 203
 title: Frontend theme service + dark/density/accent/roundness CSS
-status: in-progress
+status: done
 wave: 2
 depends_on: [101]
 priority: medium
@@ -85,13 +85,13 @@ Application mechanism: on construction and on every setter call, the service mus
 
 ## Acceptance criteria
 
-- [ ] `ThemeService.prefs()` returns `{ theme: 'cream', density: 'regular', accent: '#E8674C', roundness: 18 }` on first load with no prior `localStorage` value.
-- [ ] Calling `setTheme('dusk')` sets `document.documentElement`'s `data-theme` attribute to `"dusk"`, updates `prefs().theme`, and persists to `localStorage` under `sprout-theme-prefs`; reloading the service (simulating a page reload) picks up `theme: 'dusk'` from storage.
-- [ ] Calling `setDensity('compact')` sets `data-density="compact"` on the document root and updates `prefs().density`.
-- [ ] Calling `setAccent('#3F9E86')` sets the `--accent` CSS custom property on the document root to `#3F9E86` and updates `prefs().accent`.
-- [ ] Calling `setRoundness(8)` sets `--radius: 8px` on the document root and updates `prefs().roundness`.
-- [ ] With `data-theme="dusk"` set on the root, computed styles for elements using `var(--bg)`/`var(--surface)`/`var(--ink)` reflect the dark values from the CSS block above (verify via browser devtools or a quick throwaway test harness).
-- [ ] `ng build` succeeds with no errors.
+- [x] `ThemeService.prefs()` returns `{ theme: 'cream', density: 'regular', accent: '#E8674C', roundness: 18 }` on first load with no prior `localStorage` value.
+- [x] Calling `setTheme('dusk')` sets `document.documentElement`'s `data-theme` attribute to `"dusk"`, updates `prefs().theme`, and persists to `localStorage` under `sprout-theme-prefs`; reloading the service (simulating a page reload) picks up `theme: 'dusk'` from storage.
+- [x] Calling `setDensity('compact')` sets `data-density="compact"` on the document root and updates `prefs().density`.
+- [x] Calling `setAccent('#3F9E86')` sets the `--accent` CSS custom property on the document root to `#3F9E86` and updates `prefs().accent`.
+- [x] Calling `setRoundness(8)` sets `--radius: 8px` on the document root and updates `prefs().roundness`.
+- [x] With `data-theme="dusk"` set on the root, computed styles for elements using `var(--bg)`/`var(--surface)`/`var(--ink)` reflect the dark values from the CSS block above (verify via browser devtools or a quick throwaway test harness).
+- [x] `ng build` succeeds with no errors.
 
 ## Out of scope
 

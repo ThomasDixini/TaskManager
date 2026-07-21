@@ -133,8 +133,8 @@ Assignees/multi-user (PRD Non-Goal) are excluded from this board entirely — no
 | ~~101~~ | 1 | ~~Visual restyle (Sprout tokens, light theme)~~ | high | M | – |
 | ~~102~~ | 1 | ~~Backend schema extension (Backlog column, due date, labels, subtasks, comments)~~ | high | M | – |
 | ~~201~~ | 2 | ~~Tasks API extended (due date, labels, counts, get-by-id)~~ | high | M | 102 |
-| 202 | 2 | Labels API | medium | S | 102 |
-| 203 | 2 | Frontend theme service + dark/density/accent/roundness CSS | medium | M | 101 |
+| ~~202~~ | 2 | ~~Labels API~~ | medium | S | 102 |
+| ~~203~~ | 2 | ~~Frontend theme service + dark/density/accent/roundness CSS~~ | medium | M | 101 |
 | 301 | 3 | Subtasks API | high | S | 102, 201 |
 | 302 | 3 | Comments API | medium | S | 102, 201 |
 | 303 | 3 | Frontend Task model + service extended | high | M | 201 |
@@ -161,3 +161,5 @@ _(empty)_
 | 101 | 1 | Visual restyle |
 | 102 | 1 | Backend schema extension |
 | 201 | 2 | Tasks API extended |
+| 202 | 2 | Labels API |
+| 203 | 2 | Frontend theme service |
