@@ -1,7 +1,7 @@
 ---
 id: 501
 title: Subtask list component
-status: backlog
+status: in-progress
 wave: 5
 depends_on: [401]
 priority: high

@@ -1,7 +1,7 @@
 ---
 id: 502
 title: Comment feed component
-status: backlog
+status: in-progress
 wave: 5
 depends_on: [402]
 priority: medium
