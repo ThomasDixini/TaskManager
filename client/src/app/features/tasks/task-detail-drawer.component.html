@@ -117,10 +117,22 @@
     </div>
 
     <!-- SUBTASK_LIST_GOES_HERE -->
-    <div class="drawer-subtasks-slot" data-testid="drawer-subtasks-slot"></div>
+    <div class="drawer-subtasks-slot" data-testid="drawer-subtasks-slot">
+      <app-subtask-list
+        [taskId]="detail.id"
+        [subtasks]="detail.subtasks"
+        (subtasksChanged)="onSubtasksChanged($event)"
+      ></app-subtask-list>
+    </div>
 
     <!-- COMMENT_FEED_GOES_HERE -->
-    <div class="drawer-comments-slot" data-testid="drawer-comments-slot"></div>
+    <div class="drawer-comments-slot" data-testid="drawer-comments-slot">
+      <app-comment-feed
+        [taskId]="detail.id"
+        [comments]="detail.comments"
+        (commentAdded)="onCommentAdded($event)"
+      ></app-comment-feed>
+    </div>
   </div>
 
   <div class="drawer-footer">

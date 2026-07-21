@@ -13,6 +13,8 @@ import { TaskService } from './task.service';
 import { Label } from '../labels/label.model';
 import { LabelService } from '../labels/label.service';
 import { ProjectService } from '../projects/project.service';
+import { SubtaskListComponent } from './subtask-list.component';
+import { CommentFeedComponent } from './comment-feed.component';
 
 export interface TaskDetailDrawerData {
   taskId: number;
@@ -41,6 +43,8 @@ interface PriorityOption {
     MatButtonModule,
     MatButtonToggleModule,
     MatIconModule,
+    SubtaskListComponent,
+    CommentFeedComponent,
   ],
   templateUrl: './task-detail-drawer.component.html',
   styleUrl: './task-detail-drawer.component.scss',
@@ -159,6 +163,16 @@ export class TaskDetailDrawerComponent implements OnInit {
 
   isLabelSelected(labelId: string): boolean {
     return this.selectedLabelIds().includes(labelId);
+  }
+
+  onSubtasksChanged(subtasks: TaskDetail['subtasks']): void {
+    this.detail.update((current) => (current ? { ...current, subtasks } : current));
+  }
+
+  onCommentAdded(comment: TaskDetail['comments'][number]): void {
+    this.detail.update((current) =>
+      current ? { ...current, comments: [...current.comments, comment] } : current
+    );
   }
 
   async save(): Promise<void> {

@@ -1,7 +1,7 @@
 ---
 id: 601
 title: Compose drawer (wire subtask list + comment feed)
-status: in-progress
+status: done
 wave: 6
 depends_on: [404, 501, 502]
 priority: high
@@ -64,11 +64,11 @@ No new public interface — this task only wires existing pieces together inside
 
 ## Acceptance criteria
 
-- [ ] Opening the drawer for a task with existing subtasks/comments shows both, rendered via the embedded child components (not re-fetched separately — the same `detail()` data flows down).
-- [ ] Toggling a subtask inside the drawer updates immediately (via the child's own `SubtaskService` call) and the drawer's `detail().subtasks` reflects the change.
-- [ ] Adding a comment inside the drawer appears immediately and the drawer's `detail().comments` reflects the addition.
-- [ ] All of task 404's existing acceptance criteria (status/priority immediate-apply, batched Save for title/description/due/labels, delete confirmation, close, right-anchored panel styling) still pass — this task must not regress them.
-- [ ] `ng build` succeeds.
+- [x] Opening the drawer for a task with existing subtasks/comments shows both, rendered via the embedded child components (not re-fetched separately — the same `detail()` data flows down).
+- [x] Toggling a subtask inside the drawer updates immediately (via the child's own `SubtaskService` call) and the drawer's `detail().subtasks` reflects the change.
+- [x] Adding a comment inside the drawer appears immediately and the drawer's `detail().comments` reflects the addition.
+- [x] All of task 404's existing acceptance criteria (status/priority immediate-apply, batched Save for title/description/due/labels, delete confirmation, close, right-anchored panel styling) still pass — this task must not regress them.
+- [x] `ng build` succeeds.
 
 ## Out of scope
 
