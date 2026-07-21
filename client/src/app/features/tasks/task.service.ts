@@ -3,13 +3,15 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
 
 import { environment } from '../../../environments/environment';
-import { BoardColumn, Task, TaskPriority } from './task.model';
+import { BoardColumn, Task, TaskDetail, TaskPriority } from './task.model';
 
 export interface TaskUpdateChanges {
   title: string;
   description: string | null;
   projectId: number | null;
   priority: TaskPriority | null;
+  dueDate: string | null;
+  labelIds: string[];
 }
 
 @Injectable({ providedIn: 'root' })
@@ -32,9 +34,9 @@ export class TaskService {
     });
   }
 
-  async create(title: string): Promise<Task> {
+  async create(title: string, column?: BoardColumn): Promise<Task> {
     const created = await firstValueFrom(
-      this.http.post<Task>(`${environment.apiBaseUrl}/tasks`, { title })
+      this.http.post<Task>(`${environment.apiBaseUrl}/tasks`, { title, column })
     );
     this._tasks.update((current) => [...current, created]);
     return created;
@@ -59,5 +61,9 @@ export class TaskService {
     );
     this._tasks.update((current) => current.map((task) => (task.id === id ? updated : task)));
     return updated;
+  }
+
+  async getById(id: number): Promise<TaskDetail> {
+    return firstValueFrom(this.http.get<TaskDetail>(`${environment.apiBaseUrl}/tasks/${id}`));
   }
 }

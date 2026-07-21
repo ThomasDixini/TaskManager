@@ -135,6 +135,8 @@ export class TaskEditorDialogComponent implements OnInit {
         description: value.description,
         projectId,
         priority: value.priority,
+        dueDate: this.data.task.dueDate,
+        labelIds: this.data.task.labelIds,
       });
       this.dialogRef.close();
     } catch (err) {

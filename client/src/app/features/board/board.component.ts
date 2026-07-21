@@ -62,6 +62,7 @@ export class BoardComponent implements OnInit {
   private readonly tasksByColumn = computed<Record<BoardColumn, Task[]>>(() => {
     const all = this.taskService.tasks();
     const grouped: Record<BoardColumn, Task[]> = {
+      Backlog: [],
       ToDo: [],
       InProgress: [],
       Done: [],

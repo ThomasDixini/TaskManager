@@ -1,7 +1,7 @@
 ---
 id: 303
 title: Frontend Task model + service extended
-status: in-progress
+status: done
 wave: 3
 depends_on: [201]
 priority: high
@@ -98,12 +98,12 @@ This exact public surface is what later tasks (card enhancements, drawer, dashbo
 
 ## Acceptance criteria
 
-- [ ] `Task`, `BoardColumn` (now including `'Backlog'`), `Subtask`, `Comment`, `TaskDetail` types match the shapes specified above exactly.
-- [ ] `create('New task')` still creates in ToDo (omitting column); `create('New idea', 'Backlog')` performs `POST /api/tasks` with `{ title: 'New idea', column: 'Backlog' }` and the resolved task's `column` is `'Backlog'` (verify against the live backend, which was extended in task 201).
-- [ ] `update(id, { title, description, projectId, priority, dueDate: '2026-08-01', labelIds: ['bug'] })` performs `PUT /api/tasks/{id}` with those fields, and the resolved task reflects the new `dueDate`/`labelIds`.
-- [ ] `getById(id)` performs `GET /api/tasks/{id}` and resolves with a `TaskDetail` including `subtasks` and `comments` arrays (verify against a task that has at least one subtask/comment, created via direct API calls if needed).
-- [ ] `getById` does not modify `TaskService.tasks()` — the list signal is unaffected by calling it.
-- [ ] `ng build` succeeds.
+- [x] `Task`, `BoardColumn` (now including `'Backlog'`), `Subtask`, `Comment`, `TaskDetail` types match the shapes specified above exactly.
+- [x] `create('New task')` still creates in ToDo (omitting column); `create('New idea', 'Backlog')` performs `POST /api/tasks` with `{ title: 'New idea', column: 'Backlog' }` and the resolved task's `column` is `'Backlog'` (verify against the live backend, which was extended in task 201).
+- [x] `update(id, { title, description, projectId, priority, dueDate: '2026-08-01', labelIds: ['bug'] })` performs `PUT /api/tasks/{id}` with those fields, and the resolved task reflects the new `dueDate`/`labelIds`.
+- [x] `getById(id)` performs `GET /api/tasks/{id}` and resolves with a `TaskDetail` including `subtasks` and `comments` arrays (verify against a task that has at least one subtask/comment, created via direct API calls if needed).
+- [x] `getById` does not modify `TaskService.tasks()` — the list signal is unaffected by calling it.
+- [x] `ng build` succeeds.
 
 ## Out of scope
 
