@@ -1,7 +1,7 @@
 ---
 id: 302
 title: Comments API
-status: in-progress
+status: done
 wave: 3
 depends_on: [102, 201]
 priority: medium
@@ -62,12 +62,12 @@ public class CreateCommentRequest
 
 ## Acceptance criteria
 
-- [ ] `POST /api/tasks/{id}/comments` with `{ "text": "Looks good" }` returns `201` with `{ id, text: "Looks good", createdAt: <ISO datetime close to now> }`.
-- [ ] `POST /api/tasks/{nonexistent}/comments` returns `404`.
-- [ ] A subsequent `GET /api/tasks/{id}` (from task 201) includes the new comment in its `comments` array, and the list endpoint's `commentCount` field reflects the increment.
-- [ ] Adding a second comment to the same task returns a distinct `id` and both appear in `GET /api/tasks/{id}`'s `comments` array.
-- [ ] `server/Dtos/TaskDetailDto.cs` still compiles and `GET /api/tasks/{id}` still returns comments correctly, now sourced from the moved `CommentDto` in its own file.
-- [ ] `dotnet build` succeeds.
+- [x] `POST /api/tasks/{id}/comments` with `{ "text": "Looks good" }` returns `201` with `{ id, text: "Looks good", createdAt: <ISO datetime close to now> }`.
+- [x] `POST /api/tasks/{nonexistent}/comments` returns `404`.
+- [x] A subsequent `GET /api/tasks/{id}` (from task 201) includes the new comment in its `comments` array, and the list endpoint's `commentCount` field reflects the increment.
+- [x] Adding a second comment to the same task returns a distinct `id` and both appear in `GET /api/tasks/{id}`'s `comments` array.
+- [x] `server/Dtos/TaskDetailDto.cs` still compiles and `GET /api/tasks/{id}` still returns comments correctly, now sourced from the moved `CommentDto` in its own file.
+- [x] `dotnet build` succeeds.
 
 ## Out of scope
 
