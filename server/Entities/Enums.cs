@@ -2,6 +2,7 @@ namespace Kanban.Api.Entities;
 
 public enum BoardColumn
 {
+    Backlog,
     ToDo,
     InProgress,
     Done

@@ -131,7 +131,7 @@ Assignees/multi-user (PRD Non-Goal) are excluded from this board entirely — no
 | ID | Wave | Task | Priority | Estimate | Depends on |
 |----|------|------|----------|----------|------------|
 | 101 | 1 | Visual restyle (Sprout tokens, light theme) | high | M | – |
-| 102 | 1 | Backend schema extension (Backlog column, due date, labels, subtasks, comments) | high | M | – |
+| ~~102~~ | 1 | ~~Backend schema extension (Backlog column, due date, labels, subtasks, comments)~~ | high | M | – |
 | 201 | 2 | Tasks API extended (due date, labels, counts, get-by-id) | high | M | 102 |
 | 202 | 2 | Labels API | medium | S | 102 |
 | 203 | 2 | Frontend theme service + dark/density/accent/roundness CSS | medium | M | 101 |
@@ -156,4 +156,6 @@ _(empty)_
 
 ## Done
 
-_(empty)_
+| ID | Wave | Task |
+|----|------|------|
+| 102 | 1 | Backend schema extension |

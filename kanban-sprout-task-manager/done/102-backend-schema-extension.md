@@ -1,7 +1,7 @@
 ---
 id: 102
 title: Backend schema extension (Backlog column, due date, labels, subtasks, comments)
-status: in-progress
+status: done
 wave: 1
 depends_on: []
 priority: high
@@ -118,14 +118,14 @@ public class Comment
 
 ## Acceptance criteria
 
-- [ ] `BoardColumn` has exactly four values in order: `Backlog, ToDo, InProgress, Done`.
-- [ ] `TaskItem` has a nullable `DueDate` field of type `DateOnly?`.
-- [ ] `Label`, `Subtask`, `Comment` entity classes exist matching the shapes above exactly.
-- [ ] `AppDbContext` exposes `DbSet<Label> Labels`, `DbSet<Subtask> Subtasks`, `DbSet<Comment> Comments`, with the many-to-many and cascade-delete configuration described.
-- [ ] `dotnet ef migrations add AddSproutSchema` has been run and the resulting files are checked in under `server/Migrations/`.
-- [ ] With Postgres running, `dotnet run` from `server/` auto-applies the migration; a `SELECT * FROM "Labels"` (via `docker exec kanban-postgres psql -U kanban -d kanban -c '...'`) shows exactly the 7 seeded rows with correct `Id`/`Name`/`Tone` values.
-- [ ] Deleting a `TaskItem` directly against the database also removes its `Subtask` and `Comment` rows (cascade) — verify by inserting a task with a subtask/comment via SQL, deleting the task, and confirming the child rows are gone.
-- [ ] Existing functionality is unaffected: the app still builds, still serves existing endpoints, and no existing `TaskItem`/`Project` data is lost by the migration (verify on a fresh/empty database, since this is local dev data with no production concern).
+- [x] `BoardColumn` has exactly four values in order: `Backlog, ToDo, InProgress, Done`.
+- [x] `TaskItem` has a nullable `DueDate` field of type `DateOnly?`.
+- [x] `Label`, `Subtask`, `Comment` entity classes exist matching the shapes above exactly.
+- [x] `AppDbContext` exposes `DbSet<Label> Labels`, `DbSet<Subtask> Subtasks`, `DbSet<Comment> Comments`, with the many-to-many and cascade-delete configuration described.
+- [x] `dotnet ef migrations add AddSproutSchema` has been run and the resulting files are checked in under `server/Migrations/`.
+- [x] With Postgres running, `dotnet run` from `server/` auto-applies the migration; a `SELECT * FROM "Labels"` (via `docker exec kanban-postgres psql -U kanban -d kanban -c '...'`) shows exactly the 7 seeded rows with correct `Id`/`Name`/`Tone` values.
+- [x] Deleting a `TaskItem` directly against the database also removes its `Subtask` and `Comment` rows (cascade) — verify by inserting a task with a subtask/comment via SQL, deleting the task, and confirming the child rows are gone.
+- [x] Existing functionality is unaffected: the app still builds, still serves existing endpoints, and no existing `TaskItem`/`Project` data is lost by the migration (verify on a fresh/empty database, since this is local dev data with no production concern).
 
 ## Out of scope
 
