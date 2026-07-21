@@ -1,0 +1,37 @@
+<div class="comment-feed">
+  <div class="comment-list">
+    @if (items().length === 0) {
+      <p class="empty-state">No activity yet. Start the conversation.</p>
+    } @else {
+      @for (comment of items(); track comment.id) {
+        <div class="comment-row">
+          <p class="comment-text">{{ comment.text }}</p>
+          <span class="comment-time">{{ formatTimestamp(comment.createdAt) }}</span>
+        </div>
+      }
+    }
+  </div>
+
+  <div class="comment-compose">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Add a comment</mat-label>
+      <input
+        matInput
+        [(ngModel)]="draft"
+        [disabled]="submitting()"
+        (keydown.enter)="submitComment()"
+        placeholder="Write a comment and press Enter"
+      />
+    </mat-form-field>
+    <button
+      mat-icon-button
+      type="button"
+      class="send-button"
+      [disabled]="submitting() || !draft.trim()"
+      (click)="submitComment()"
+      aria-label="Send comment"
+    >
+      <mat-icon>send</mat-icon>
+    </button>
+  </div>
+</div>

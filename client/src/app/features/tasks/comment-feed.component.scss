@@ -1,0 +1,67 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  font-family: "Instrument Sans", system-ui, sans-serif;
+  color: var(--ink);
+}
+
+.comment-feed {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.comment-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 260px;
+  overflow-y: auto;
+}
+
+.empty-state {
+  margin: 0;
+  padding: 12px 0;
+  color: var(--ink-2);
+  font-size: 13px;
+}
+
+.comment-row {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  border-radius: calc(var(--radius) - 10px);
+  background: var(--surface-2);
+}
+
+.comment-text {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--ink);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.comment-time {
+  font-size: 11px;
+  color: var(--ink-2);
+}
+
+.comment-compose {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.send-button {
+  flex: 0 0 auto;
+  color: var(--accent);
+}

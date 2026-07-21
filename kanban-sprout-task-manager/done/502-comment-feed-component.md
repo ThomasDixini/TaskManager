@@ -1,7 +1,7 @@
 ---
 id: 502
 title: Comment feed component
-status: in-progress
+status: done
 wave: 5
 depends_on: [402]
 priority: medium
@@ -52,10 +52,10 @@ export interface Comment { id: number; text: string; createdAt: string; }
 
 ## Acceptance criteria
 
-- [ ] Given `comments = [{id:1,text:'Nice work',createdAt:'2026-07-20T10:00:00Z'}]`, the component renders that one comment's text.
-- [ ] With `comments = []`, the empty-state message renders.
-- [ ] Typing "Thanks!" into the compose input and pressing Enter calls `commentService.create(taskId, 'Thanks!')`; on resolution, a new row appears with that text, the input clears, and `commentAdded` emits the new comment.
-- [ ] `ng build` succeeds (the component doesn't need to be embedded anywhere yet — that's task 601's job).
+- [x] Given `comments = [{id:1,text:'Nice work',createdAt:'2026-07-20T10:00:00Z'}]`, the component renders that one comment's text.
+- [x] With `comments = []`, the empty-state message renders.
+- [x] Typing "Thanks!" into the compose input and pressing Enter calls `commentService.create(taskId, 'Thanks!')`; on resolution, a new row appears with that text, the input clears, and `commentAdded` emits the new comment.
+- [x] `ng build` succeeds (the component doesn't need to be embedded anywhere yet — that's task 601's job).
 
 ## Out of scope
 
