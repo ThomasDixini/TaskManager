@@ -135,11 +135,11 @@ Assignees/multi-user (PRD Non-Goal) are excluded from this board entirely — no
 | ~~201~~ | 2 | ~~Tasks API extended (due date, labels, counts, get-by-id)~~ | high | M | 102 |
 | ~~202~~ | 2 | ~~Labels API~~ | medium | S | 102 |
 | ~~203~~ | 2 | ~~Frontend theme service + dark/density/accent/roundness CSS~~ | medium | M | 101 |
-| 301 | 3 | Subtasks API | high | S | 102, 201 |
-| 302 | 3 | Comments API | medium | S | 102, 201 |
-| 303 | 3 | Frontend Task model + service extended | high | M | 201 |
-| 304 | 3 | Frontend Label model + service | medium | S | 202 |
-| 305 | 3 | Settings panel component | low | S | 203 |
+| ~~301~~ | 3 | ~~Subtasks API~~ | high | S | 102, 201 |
+| ~~302~~ | 3 | ~~Comments API~~ | medium | S | 102, 201 |
+| ~~303~~ | 3 | ~~Frontend Task model + service extended~~ | high | M | 201 |
+| ~~304~~ | 3 | ~~Frontend Label model + service~~ | medium | S | 202 |
+| ~~305~~ | 3 | ~~Settings panel component~~ | low | S | 203 |
 | 401 | 4 | Frontend Subtask model + service | high | S | 301 |
 | 402 | 4 | Frontend Comment model + service | medium | S | 302 |
 | 403 | 4 | Task card enhancements (labels, due, subtask progress, comments) | high | M | 303 |
@@ -163,3 +163,8 @@ _(empty)_
 | 201 | 2 | Tasks API extended |
 | 202 | 2 | Labels API |
 | 203 | 2 | Frontend theme service |
+| 301 | 3 | Subtasks API |
+| 302 | 3 | Comments API |
+| 303 | 3 | Frontend Task model + service extended |
+| 304 | 3 | Frontend Label model + service |
+| 305 | 3 | Settings panel component |

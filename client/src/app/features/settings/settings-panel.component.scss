@@ -1,0 +1,40 @@
+.settings-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 12px;
+  min-width: 240px;
+
+  &__field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  &__label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--ink-2, #726757);
+  }
+
+  &__swatches {
+    display: flex;
+    gap: 8px;
+  }
+
+  &__swatch {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    cursor: pointer;
+    padding: 0;
+
+    &.is-selected {
+      border-color: var(--ink, #2b2620);
+      box-shadow: 0 0 0 2px var(--surface, #fff);
+    }
+  }
+}

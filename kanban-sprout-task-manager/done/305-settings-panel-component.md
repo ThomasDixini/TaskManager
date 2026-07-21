@@ -1,7 +1,7 @@
 ---
 id: 305
 title: Settings panel component
-status: in-progress
+status: done
 wave: 3
 depends_on: [203]
 priority: low
@@ -49,12 +49,12 @@ export class ThemeService {
 
 ## Acceptance criteria
 
-- [ ] The component renders four distinct controls: theme, density, accent, roundness.
-- [ ] Clicking "Dusk" calls `themeService.setTheme('dusk')` and the control visually reflects the new selected state (verify `document.documentElement`'s `data-theme` attribute changes, since `ThemeService` applies it).
-- [ ] Clicking each density option calls the corresponding `setDensity` value.
-- [ ] Clicking an accent swatch calls `setAccent` with that swatch's hex value, and the swatch shows as selected.
-- [ ] Moving the roundness control calls `setRoundness` with the new value, and `document.documentElement.style.getPropertyValue('--radius')` reflects it.
-- [ ] `ng build` succeeds (the component doesn't need to be used/routed anywhere yet — that's task 701's job).
+- [x] The component renders four distinct controls: theme, density, accent, roundness.
+- [x] Clicking "Dusk" calls `themeService.setTheme('dusk')` and the control visually reflects the new selected state (verify `document.documentElement`'s `data-theme` attribute changes, since `ThemeService` applies it).
+- [x] Clicking each density option calls the corresponding `setDensity` value.
+- [x] Clicking an accent swatch calls `setAccent` with that swatch's hex value, and the swatch shows as selected.
+- [x] Moving the roundness control calls `setRoundness` with the new value, and `document.documentElement.style.getPropertyValue('--radius')` reflects it.
+- [x] `ng build` succeeds (the component doesn't need to be used/routed anywhere yet — that's task 701's job).
 
 ## Out of scope
 

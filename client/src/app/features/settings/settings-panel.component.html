@@ -1,0 +1,56 @@
+<div class="settings-panel">
+  <div class="settings-panel__field">
+    <label class="settings-panel__label">Theme</label>
+    <mat-button-toggle-group
+      [value]="themeService.prefs().theme"
+      (change)="onThemeChange($event.value)"
+      data-testid="theme-toggle"
+    >
+      <mat-button-toggle value="cream">Cream</mat-button-toggle>
+      <mat-button-toggle value="dusk">Dusk</mat-button-toggle>
+    </mat-button-toggle-group>
+  </div>
+
+  <div class="settings-panel__field">
+    <label class="settings-panel__label">Density</label>
+    <mat-button-toggle-group
+      [value]="themeService.prefs().density"
+      (change)="onDensityChange($event.value)"
+      data-testid="density-toggle"
+    >
+      <mat-button-toggle value="compact">Compact</mat-button-toggle>
+      <mat-button-toggle value="regular">Regular</mat-button-toggle>
+      <mat-button-toggle value="comfy">Comfy</mat-button-toggle>
+    </mat-button-toggle-group>
+  </div>
+
+  <div class="settings-panel__field">
+    <label class="settings-panel__label">Accent</label>
+    <div class="settings-panel__swatches">
+      @for (accent of accentOptions; track accent) {
+        <button
+          type="button"
+          class="settings-panel__swatch"
+          [class.is-selected]="themeService.prefs().accent === accent"
+          [style.background]="accent"
+          [attr.aria-label]="'Accent ' + accent"
+          [attr.aria-pressed]="themeService.prefs().accent === accent"
+          (click)="onAccentChange(accent)"
+        ></button>
+      }
+    </div>
+  </div>
+
+  <div class="settings-panel__field">
+    <label class="settings-panel__label">
+      Roundness ({{ themeService.prefs().roundness }}px)
+    </label>
+    <mat-slider min="4" max="26" step="2" discrete data-testid="roundness-slider">
+      <input
+        matSliderThumb
+        [value]="themeService.prefs().roundness"
+        (valueChange)="onRoundnessChange($event)"
+      />
+    </mat-slider>
+  </div>
+</div>
