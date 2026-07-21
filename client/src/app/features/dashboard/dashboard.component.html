@@ -1,0 +1,101 @@
+<div class="dashboard">
+  <header class="dashboard__header">
+    <div>
+      <h1 class="dashboard__greeting">{{ greeting }}</h1>
+      <p class="dashboard__date">{{ formattedDate }}</p>
+    </div>
+    <button type="button" class="btn-primary" (click)="openBoard()">Open board</button>
+  </header>
+
+  <section class="stat-grid">
+    <div class="stat-card">
+      <span class="stat-card__label">Open tasks</span>
+      <span class="stat-card__value">{{ active().length }}</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-card__label">Due today</span>
+      <span class="stat-card__value">{{ todaysFocus().length }}</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-card__label">In progress</span>
+      <span class="stat-card__value">{{ doing().length }}</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-card__label">Completed</span>
+      <span class="stat-card__value">{{ done().length }}</span>
+    </div>
+  </section>
+
+  <section class="dashboard__columns">
+    <div class="panel focus-panel">
+      <h2 class="panel__title">Today's focus</h2>
+
+      @if (todaysFocus().length === 0) {
+        <p class="empty-state">Nothing due today — enjoy the breathing room.</p>
+      } @else {
+        <ul class="focus-list">
+          @for (item of todaysFocus(); track item.task.id) {
+            <li class="focus-item">
+              <button
+                type="button"
+                class="focus-item__check"
+                [attr.aria-label]="'Mark ' + item.task.title + ' as done'"
+                (click)="markDone(item.task)"
+              ></button>
+              <div class="focus-item__body">
+                <span class="focus-item__title">{{ item.task.title }}</span>
+                <div class="focus-item__meta">
+                  @if (item.task.priority) {
+                    <span class="badge priority-badge" [ngClass]="'priority-' + item.task.priority.toLowerCase()">{{ item.task.priority }}</span>
+                  }
+                  <span class="due-badge" [ngClass]="'due-' + item.dueState">{{ item.dueLabel }}</span>
+                </div>
+              </div>
+            </li>
+          }
+        </ul>
+      }
+    </div>
+
+    <div class="panel progress-panel">
+      <h2 class="panel__title">Weekly progress</h2>
+      <div class="progress-ring">
+        <svg viewBox="0 0 100 100" width="140" height="140">
+          <circle class="progress-ring__track" cx="50" cy="50" r="42" />
+          <circle
+            class="progress-ring__fill"
+            cx="50"
+            cy="50"
+            r="42"
+            [attr.stroke-dasharray]="ringCircumference"
+            [attr.stroke-dashoffset]="ringDashoffset"
+          />
+        </svg>
+        <div class="progress-ring__label">
+          <span class="progress-ring__pct">{{ pctRounded() }}%</span>
+        </div>
+      </div>
+      <p class="progress-ring__count">{{ done().length }}/{{ taskService.tasks().length }} tasks completed</p>
+    </div>
+  </section>
+
+  <section class="panel projects-panel">
+    <h2 class="panel__title">Projects</h2>
+
+    @if (byProject().length === 0) {
+      <p class="empty-state">No project activity yet.</p>
+    } @else {
+      <ul class="project-list">
+        @for (item of byProject(); track item.project.id) {
+          <li class="project-row">
+            <span class="project-row__name">{{ item.project.name }}</span>
+            <div class="project-row__bar">
+              <div class="project-row__fill" [style.width.%]="item.pct"></div>
+            </div>
+            <span class="project-row__count">{{ item.done }}/{{ item.total }}</span>
+          </li>
+        }
+      </ul>
+    }
+  </section>
+</div>

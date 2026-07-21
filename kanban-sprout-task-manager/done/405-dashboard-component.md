@@ -1,7 +1,7 @@
 ---
 id: 405
 title: Dashboard component
-status: in-progress
+status: done
 wave: 4
 depends_on: [303]
 priority: high
@@ -71,14 +71,14 @@ export class ProjectService {
 
 ## Acceptance criteria
 
-- [ ] The greeting text changes appropriately based on time of day (verify by checking the computed greeting logic covers morning/afternoon/evening correctly, e.g. via a quick manual check or a throwaway spec you delete afterward).
-- [ ] With N active, M in-progress, K done tasks, the four stat cards show `N`, `<count due today>`, `M`, `K` respectively.
-- [ ] A task with today's date as `dueDate` and `column !== 'Done'` appears in "Today's focus"; a task with a past `dueDate` also appears (marked overdue); a task with a future `dueDate` does not.
-- [ ] Clicking the "mark done" affordance on a Today's-focus row calls `taskService.move(id, 'Done', 0)` and the task disappears from the list on the next reactive update (since it's no longer `column !== 'Done'`).
-- [ ] With zero tasks due today, the empty-state message renders.
-- [ ] The progress ring's displayed percentage matches `done.length / tasks.length` (rounded), and updates reactively when tasks change.
-- [ ] The per-project list shows one row per project that has at least one task, with a correct `done/total` count and proportional mini progress bar; projects with zero tasks are omitted.
-- [ ] `ng build` succeeds (the component doesn't need to be routed yet — that's task 701's job).
+- [x] The greeting text changes appropriately based on time of day (verify by checking the computed greeting logic covers morning/afternoon/evening correctly, e.g. via a quick manual check or a throwaway spec you delete afterward).
+- [x] With N active, M in-progress, K done tasks, the four stat cards show `N`, `<count due today>`, `M`, `K` respectively.
+- [x] A task with today's date as `dueDate` and `column !== 'Done'` appears in "Today's focus"; a task with a past `dueDate` also appears (marked overdue); a task with a future `dueDate` does not.
+- [x] Clicking the "mark done" affordance on a Today's-focus row calls `taskService.move(id, 'Done', 0)` and the task disappears from the list on the next reactive update (since it's no longer `column !== 'Done'`).
+- [x] With zero tasks due today, the empty-state message renders.
+- [x] The progress ring's displayed percentage matches `done.length / tasks.length` (rounded), and updates reactively when tasks change.
+- [x] The per-project list shows one row per project that has at least one task, with a correct `done/total` count and proportional mini progress bar; projects with zero tasks are omitted.
+- [x] `ng build` succeeds (the component doesn't need to be routed yet — that's task 701's job).
 
 ## Out of scope
 
