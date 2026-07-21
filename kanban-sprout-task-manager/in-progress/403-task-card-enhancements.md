@@ -1,7 +1,7 @@
 ---
 id: 403
 title: Task card enhancements (labels, due, subtask progress, comments)
-status: backlog
+status: in-progress
 wave: 4
 depends_on: [303]
 priority: high

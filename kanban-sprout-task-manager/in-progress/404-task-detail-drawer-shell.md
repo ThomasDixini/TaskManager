@@ -1,7 +1,7 @@
 ---
 id: 404
 title: Task detail drawer shell
-status: backlog
+status: in-progress
 wave: 4
 depends_on: [303, 304]
 priority: high

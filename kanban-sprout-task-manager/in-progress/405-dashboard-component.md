@@ -1,7 +1,7 @@
 ---
 id: 405
 title: Dashboard component
-status: backlog
+status: in-progress
 wave: 4
 depends_on: [303]
 priority: high

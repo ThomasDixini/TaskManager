@@ -1,7 +1,7 @@
 ---
 id: 401
 title: Frontend Subtask model + service
-status: backlog
+status: in-progress
 wave: 4
 depends_on: [301]
 priority: high
