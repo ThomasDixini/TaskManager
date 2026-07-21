@@ -1,7 +1,7 @@
 ---
 id: 404
 title: Task detail drawer shell
-status: in-progress
+status: done
 wave: 4
 depends_on: [303, 304]
 priority: high
@@ -89,14 +89,14 @@ The app has three (`Backlog`, `ToDo`, `InProgress`, `Done` — four) fixed colum
 
 ## Acceptance criteria
 
-- [ ] Opening the drawer with a given `taskId` fetches and displays that task's title, description, status, priority, due date, and labels, matching what `GET /api/tasks/{id}` returns.
-- [ ] Changing the Status segmented control immediately calls `TaskService.move` (verify via a subsequent `taskService.tasks()` check or a fresh `getById` call) — no Save click needed.
-- [ ] Changing the Priority segmented control immediately calls `TaskService.update` with the new priority — no Save click needed.
-- [ ] Editing title/description/due date/labels and clicking Save calls `TaskService.update` with all of them at once, and closes the drawer on success.
-- [ ] The Labels control lists all entries from `LabelService.labels()`.
-- [ ] Delete requires a confirmation step before calling `TaskService.delete`; confirming deletes and closes the drawer.
-- [ ] The drawer renders as a right-anchored, full-height panel (not a centered dialog) — verify visually via `ng serve` and a throwaway harness that opens it (e.g. a temporary button/test spec — delete any throwaway harness file afterward, it's not part of this task's file scope).
-- [ ] `ng build` succeeds (the drawer doesn't need to be opened from the board yet — that's task 701's job).
+- [x] Opening the drawer with a given `taskId` fetches and displays that task's title, description, status, priority, due date, and labels, matching what `GET /api/tasks/{id}` returns.
+- [x] Changing the Status segmented control immediately calls `TaskService.move` (verify via a subsequent `taskService.tasks()` check or a fresh `getById` call) — no Save click needed.
+- [x] Changing the Priority segmented control immediately calls `TaskService.update` with the new priority — no Save click needed.
+- [x] Editing title/description/due date/labels and clicking Save calls `TaskService.update` with all of them at once, and closes the drawer on success.
+- [x] The Labels control lists all entries from `LabelService.labels()`.
+- [x] Delete requires a confirmation step before calling `TaskService.delete`; confirming deletes and closes the drawer.
+- [x] The drawer renders as a right-anchored, full-height panel (not a centered dialog) — verify visually via `ng serve` and a throwaway harness that opens it (e.g. a temporary button/test spec — delete any throwaway harness file afterward, it's not part of this task's file scope).
+- [x] `ng build` succeeds (the drawer doesn't need to be opened from the board yet — that's task 701's job).
 
 ## Out of scope
 

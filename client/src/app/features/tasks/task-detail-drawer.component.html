@@ -1,0 +1,139 @@
+<div class="drawer-header">
+  <div class="drawer-header-main">
+    <span class="drawer-project" data-testid="drawer-project-name">{{ projectName() }}</span>
+  </div>
+  <div class="drawer-header-actions">
+    <button
+      type="button"
+      mat-icon-button
+      color="warn"
+      (click)="requestDelete()"
+      data-testid="delete-button"
+      aria-label="Delete task"
+    >
+      <mat-icon>delete</mat-icon>
+    </button>
+    <button
+      type="button"
+      mat-icon-button
+      (click)="close()"
+      data-testid="close-button"
+      aria-label="Close drawer"
+    >
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+</div>
+
+@if (showDeleteConfirm()) {
+  <div class="delete-confirm">
+    <p class="delete-confirm-text">Are you sure you want to delete this task? This cannot be undone.</p>
+    <div class="delete-confirm-actions">
+      <button type="button" mat-button (click)="cancelDelete()" data-testid="cancel-delete-button">
+        Cancel
+      </button>
+      <button
+        type="button"
+        mat-flat-button
+        color="warn"
+        [disabled]="isDeleting()"
+        (click)="confirmDelete()"
+        data-testid="confirm-delete-button"
+      >
+        Yes, delete
+      </button>
+    </div>
+  </div>
+} @else if (isLoading()) {
+  <div class="drawer-loading" data-testid="drawer-loading">Loading…</div>
+} @else if (detail(); as detail) {
+  <div class="drawer-body" [formGroup]="form">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Title</mat-label>
+      <input matInput formControlName="title" required data-testid="title-input" />
+      @if (form.controls.title.invalid && form.controls.title.touched) {
+        <mat-error>Title is required</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Description</mat-label>
+      <textarea matInput formControlName="description" rows="4" data-testid="description-input"></textarea>
+    </mat-form-field>
+
+    <div class="field-group">
+      <label class="field-label">Status</label>
+      <mat-button-toggle-group
+        [value]="detail.column"
+        (change)="onStatusChange($event)"
+        data-testid="status-toggle-group"
+      >
+        @for (option of columnOptions; track option.value) {
+          <mat-button-toggle [value]="option.value" [attr.data-testid]="'status-option-' + option.value">
+            {{ option.label }}
+          </mat-button-toggle>
+        }
+      </mat-button-toggle-group>
+    </div>
+
+    <div class="field-group">
+      <label class="field-label">Priority</label>
+      <mat-button-toggle-group
+        [value]="detail.priority"
+        (change)="onPriorityChange($event)"
+        data-testid="priority-toggle-group"
+      >
+        @for (option of priorityOptions; track option.value) {
+          <mat-button-toggle [value]="option.value" [attr.data-testid]="'priority-option-' + option.value">
+            {{ option.label }}
+          </mat-button-toggle>
+        }
+      </mat-button-toggle-group>
+    </div>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Due date</mat-label>
+      <input matInput type="date" formControlName="dueDate" data-testid="due-date-input" />
+    </mat-form-field>
+
+    <div class="field-group">
+      <label class="field-label">Labels</label>
+      <div class="label-chip-list" data-testid="labels-list">
+        @for (label of labels; track label.id) {
+          <button
+            type="button"
+            class="label-chip"
+            [class.selected]="isLabelSelected(label.id)"
+            [style.--chip-tone]="'var(--tone-' + label.tone + ')'"
+            (click)="toggleLabel(label.id)"
+            [attr.data-testid]="'label-chip-' + label.id"
+          >
+            {{ label.name }}
+          </button>
+        } @empty {
+          <span class="no-labels" data-testid="no-labels">No labels yet</span>
+        }
+      </div>
+    </div>
+
+    <!-- SUBTASK_LIST_GOES_HERE -->
+    <div class="drawer-subtasks-slot" data-testid="drawer-subtasks-slot"></div>
+
+    <!-- COMMENT_FEED_GOES_HERE -->
+    <div class="drawer-comments-slot" data-testid="drawer-comments-slot"></div>
+  </div>
+
+  <div class="drawer-footer">
+    <button type="button" mat-button (click)="close()" data-testid="cancel-button">Cancel</button>
+    <button
+      type="button"
+      mat-flat-button
+      color="primary"
+      [disabled]="form.invalid || isSaving()"
+      (click)="save()"
+      data-testid="save-button"
+    >
+      Save
+    </button>
+  </div>
+}
