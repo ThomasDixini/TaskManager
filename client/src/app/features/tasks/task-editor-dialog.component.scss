@@ -1,3 +1,24 @@
+:host {
+  display: block;
+  background: var(--surface);
+  color: var(--ink);
+  border-radius: var(--radius);
+  font-family: "Instrument Sans", system-ui, sans-serif;
+}
+
+::ng-deep .mat-mdc-dialog-surface {
+  background: var(--surface) !important;
+  border-radius: var(--radius) !important;
+  box-shadow: var(--shadow-lg) !important;
+}
+
+h2[mat-dialog-title] {
+  font-family: "Bricolage Grotesque", sans-serif !important;
+  font-weight: 700 !important;
+  letter-spacing: -.01em;
+  color: var(--ink);
+}
+
 .editor-content {
   display: flex;
   flex-direction: column;
@@ -15,8 +36,8 @@
   gap: 8px;
   margin: -4px 0 8px;
   padding: 12px;
-  border-radius: 4px;
-  background: rgba(0, 0, 0, 0.04);
+  border-radius: calc(var(--radius) - 8px);
+  background: var(--surface-2);
 }
 
 .inline-add-project-actions {
@@ -27,6 +48,7 @@
 
 .delete-confirm-text {
   margin: 8px 0 16px;
+  color: var(--ink-2);
 }
 
 .spacer {
@@ -36,4 +58,10 @@
 mat-dialog-actions {
   display: flex;
   align-items: center;
+}
+
+button[mat-flat-button][color="primary"] {
+  background: var(--accent) !important;
+  color: #fff !important;
+  box-shadow: var(--shadow-sm);
 }

@@ -5,7 +5,7 @@
   min-height: 100vh;
   padding: 16px 24px;
   box-sizing: border-box;
-  background: #f4f5f7;
+  background: var(--bg);
 }
 
 .board__toolbar {
@@ -21,7 +21,7 @@
 .board__columns {
   display: flex;
   flex: 1;
-  gap: 16px;
+  gap: var(--col-gap);
   align-items: flex-start;
 }
 
@@ -31,18 +31,21 @@
   flex: 1 1 0;
   min-width: 260px;
   max-width: 400px;
-  background: #ebecf0;
-  border-radius: 8px;
+  background: color-mix(in oklab, var(--surface-2) 55%, var(--bg));
+  border: 1px solid var(--border-soft);
+  border-radius: calc(var(--radius) + 2px);
   padding: 12px;
   box-sizing: border-box;
 }
 
 .board-column__header {
-  font-weight: 600;
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-weight: 700;
+  letter-spacing: -.01em;
   font-size: 14px;
   margin-bottom: 12px;
   padding: 0 4px;
-  color: rgba(0, 0, 0, 0.7);
+  color: var(--ink);
 }
 
 .board-column__list {
@@ -52,7 +55,7 @@
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: var(--card-gap);
 }
 
 .board-column__item {

@@ -1,7 +1,7 @@
 ---
 id: 101
 title: Visual restyle (Sprout tokens, light theme)
-status: in-progress
+status: done
 wave: 1
 depends_on: []
 priority: high
@@ -72,12 +72,12 @@ These CSS variable names (`--bg`, `--surface`, `--ink`, `--accent`, `--tone-*`, 
 
 ## Acceptance criteria
 
-- [ ] `client/src/index.html` loads both Google Fonts.
-- [ ] `client/src/styles.scss` defines all listed CSS custom properties with the exact values given, on `:root`.
-- [ ] The board's background, column backgrounds, and card styling visibly use the cream/coral palette (verify via `ng serve` + browser, or by inspecting computed styles).
-- [ ] Column and dialog titles render in Bricolage Grotesque; body text renders in Instrument Sans.
-- [ ] `ng build` succeeds with no errors.
-- [ ] No functional behavior changed — the board still has exactly the same three columns, same fields, same drag-and-drop, same quick-add, same dialog fields as before this task.
+- [x] `client/src/index.html` loads both Google Fonts.
+- [x] `client/src/styles.scss` defines all listed CSS custom properties with the exact values given, on `:root`.
+- [x] The board's background, column backgrounds, and card styling visibly use the cream/coral palette (verify via `ng serve` + browser, or by inspecting computed styles).
+- [x] Column and dialog titles render in Bricolage Grotesque; body text renders in Instrument Sans.
+- [x] `ng build` succeeds with no errors.
+- [x] No functional behavior changed — the board still has exactly the same three columns, same fields, same drag-and-drop, same quick-add, same dialog fields as before this task.
 
 ## Out of scope
 
