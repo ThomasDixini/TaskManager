@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, computed, signal } from '@angular/core';
+import { Component, OnInit, computed, effect, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
@@ -18,10 +18,10 @@ import { BoardColumn, Task } from '../tasks/task.model';
 import { TaskService } from '../tasks/task.service';
 import { ProjectService } from '../projects/project.service';
 import { Project } from '../projects/project.model';
-import {
-  TaskEditorDialogComponent,
-  TaskEditorDialogData,
-} from '../tasks/task-editor-dialog.component';
+import { Label } from '../labels/label.model';
+import { LabelService } from '../labels/label.service';
+import { TaskDetailDrawerComponent, TaskDetailDrawerData } from '../tasks/task-detail-drawer.component';
+import { BoardFilterState } from '../../app.component';
 
 interface ColumnDefinition {
   id: BoardColumn;
@@ -47,6 +47,7 @@ interface ColumnDefinition {
 })
 export class BoardComponent implements OnInit {
   readonly columns: ColumnDefinition[] = [
+    { id: 'Backlog', label: 'Backlog' },
     { id: 'ToDo', label: 'To Do' },
     { id: 'InProgress', label: 'In Progress' },
     { id: 'Done', label: 'Done' },
@@ -54,13 +55,26 @@ export class BoardComponent implements OnInit {
 
   readonly columnIds: BoardColumn[] = this.columns.map((c) => c.id);
 
-  readonly selectedProjectId = signal<number | null>(null);
-  readonly quickAddTitle = signal('');
+  readonly quickAddTitles = signal<Record<BoardColumn, string>>({
+    Backlog: '',
+    ToDo: '',
+    InProgress: '',
+    Done: '',
+  });
 
   readonly projects = computed<Project[]>(() => this.projectService.projects());
 
-  private readonly tasksByColumn = computed<Record<BoardColumn, Task[]>>(() => {
+  private readonly filteredTasks = computed<Task[]>(() => {
     const all = this.taskService.tasks();
+    const term = this.filterState.searchTerm().trim().toLowerCase();
+    if (!term) {
+      return all;
+    }
+    return all.filter((task) => task.title.toLowerCase().includes(term));
+  });
+
+  private readonly tasksByColumn = computed<Record<BoardColumn, Task[]>>(() => {
+    const all = this.filteredTasks();
     const grouped: Record<BoardColumn, Task[]> = {
       Backlog: [],
       ToDo: [],
@@ -79,12 +93,20 @@ export class BoardComponent implements OnInit {
   constructor(
     protected readonly taskService: TaskService,
     protected readonly projectService: ProjectService,
+    protected readonly labelService: LabelService,
+    protected readonly filterState: BoardFilterState,
     private readonly dialog: MatDialog
-  ) {}
+  ) {
+    // Reload tasks (server-side filter) whenever the shared project filter changes.
+    effect(() => {
+      const projectId = this.filterState.selectedProjectId();
+      this.taskService.load(projectId ?? undefined);
+    });
+  }
 
   ngOnInit(): void {
-    this.taskService.load();
     this.projectService.load();
+    this.labelService.load();
   }
 
   tasksFor(column: BoardColumn): Task[] {
@@ -99,27 +121,41 @@ export class BoardComponent implements OnInit {
     return project ? project.name : null;
   }
 
-  onFilterChange(): void {
-    this.taskService.load(this.selectedProjectId() ?? undefined);
+  labelsFor(task: Task): Label[] {
+    const all = this.labelService.labels();
+    return task.labelIds
+      .map((id) => all.find((label) => label.id === id))
+      .filter((label): label is Label => !!label);
   }
 
-  async onQuickAddSubmit(): Promise<void> {
-    const title = this.quickAddTitle().trim();
+  quickAddTitleFor(column: BoardColumn): string {
+    return this.quickAddTitles()[column];
+  }
+
+  setQuickAddTitle(column: BoardColumn, value: string): void {
+    this.quickAddTitles.update((current) => ({ ...current, [column]: value }));
+  }
+
+  async onQuickAddSubmit(column: BoardColumn): Promise<void> {
+    const title = this.quickAddTitles()[column].trim();
     if (!title) {
       return;
     }
-    this.quickAddTitle.set('');
+    this.setQuickAddTitle(column, '');
     try {
-      await this.taskService.create(title);
+      await this.taskService.create(title, column);
     } catch (err) {
       console.error('Failed to create task', err);
     }
   }
 
   openEditor(task: Task): void {
-    this.dialog.open(TaskEditorDialogComponent, {
-      data: { task } as TaskEditorDialogData,
-      width: '480px',
+    this.dialog.open(TaskDetailDrawerComponent, {
+      data: { taskId: task.id } as TaskDetailDrawerData,
+      panelClass: 'tm-detail-drawer-panel',
+      position: { right: '0' },
+      height: '100%',
+      width: 'min(520px, 100vw)',
     });
   }
 
@@ -144,7 +180,7 @@ export class BoardComponent implements OnInit {
     } catch (err) {
       console.error('Failed to move task', err);
     } finally {
-      this.taskService.load(this.selectedProjectId() ?? undefined);
+      this.taskService.load(this.filterState.selectedProjectId() ?? undefined);
     }
   }
 }

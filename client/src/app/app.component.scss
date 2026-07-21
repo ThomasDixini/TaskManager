@@ -1,0 +1,211 @@
+:host {
+  display: block;
+  height: 100%;
+}
+
+.shell {
+  display: flex;
+  height: 100%;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 240px;
+  flex: 0 0 240px;
+  background: var(--sidebar-bg);
+  border-right: 1px solid var(--border-soft);
+  display: flex;
+  flex-direction: column;
+  padding: 18px 14px;
+  box-sizing: border-box;
+  transition: margin-left 180ms ease, width 180ms ease;
+  overflow-y: auto;
+
+  &--collapsed {
+    margin-left: -240px;
+    width: 0;
+    flex: 0 0 0;
+    padding-left: 0;
+    padding-right: 0;
+    border-right: none;
+    overflow: hidden;
+  }
+}
+
+.sidebar__brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px 18px;
+}
+
+.sidebar__brand-mark {
+  font-size: 20px;
+}
+
+.sidebar__brand-name {
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
+.sidebar__nav {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-bottom: 20px;
+}
+
+.sidebar__nav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: none;
+  background: transparent;
+  color: var(--ink-2);
+  font: inherit;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 9px 10px;
+  border-radius: var(--radius);
+  cursor: pointer;
+  text-align: left;
+
+  mat-icon {
+    font-size: 20px;
+    height: 20px;
+    width: 20px;
+  }
+
+  &:hover {
+    background: color-mix(in oklab, var(--surface) 60%, transparent);
+    color: var(--ink);
+  }
+
+  &--active {
+    background: var(--surface);
+    color: var(--ink);
+    box-shadow: var(--shadow-sm);
+  }
+}
+
+.sidebar__section-title {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-2);
+  padding: 0 10px;
+  margin-bottom: 6px;
+}
+
+.sidebar__project-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.sidebar__project-item {
+  display: block;
+  width: 100%;
+  border: none;
+  background: transparent;
+  color: var(--ink-2);
+  font: inherit;
+  font-size: 13.5px;
+  padding: 7px 10px;
+  border-radius: var(--radius);
+  cursor: pointer;
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  &:hover {
+    background: color-mix(in oklab, var(--surface) 60%, transparent);
+    color: var(--ink);
+  }
+
+  &--active {
+    background: var(--surface);
+    color: var(--ink);
+    font-weight: 600;
+  }
+}
+
+.main {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border-bottom: 1px solid var(--border-soft);
+  background: var(--surface);
+  flex: 0 0 auto;
+}
+
+.topbar__burger {
+  display: none;
+}
+
+.topbar__search {
+  width: 320px;
+  max-width: 50vw;
+
+  ::ng-deep .mat-mdc-form-field-infix {
+    min-height: unset;
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
+
+  ::ng-deep .mat-mdc-text-field-wrapper {
+    background: var(--surface-2);
+  }
+}
+
+.topbar__spacer {
+  flex: 1;
+}
+
+.content {
+  flex: 1;
+  overflow-y: auto;
+}
+
+::ng-deep .topbar__settings-menu .mat-mdc-menu-content {
+  padding: 4px 0;
+}
+
+@media (max-width: 860px) {
+  .topbar__burger {
+    display: inline-flex;
+  }
+
+  .sidebar {
+    position: fixed;
+    inset: 0 auto 0 0;
+    z-index: 20;
+    box-shadow: var(--shadow-lg);
+  }
+
+  .sidebar--collapsed {
+    margin-left: -240px;
+  }
+
+  .topbar__search {
+    max-width: 40vw;
+  }
+}

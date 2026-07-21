@@ -1,1 +1,91 @@
-<router-outlet></router-outlet>
+<div class="shell">
+  <aside class="sidebar" [class.sidebar--collapsed]="!sidebarOpen()">
+    <div class="sidebar__brand">
+      <span class="sidebar__brand-mark">🌱</span>
+      <span class="sidebar__brand-name">Sprout</span>
+    </div>
+
+    <nav class="sidebar__nav">
+      <button type="button" class="sidebar__nav-item" routerLink="/dashboard" routerLinkActive="sidebar__nav-item--active">
+        <mat-icon>dashboard</mat-icon>
+        <span>Overview</span>
+      </button>
+      <button type="button" class="sidebar__nav-item" routerLink="/board" routerLinkActive="sidebar__nav-item--active">
+        <mat-icon>view_column</mat-icon>
+        <span>Board</span>
+      </button>
+    </nav>
+
+    <div class="sidebar__section">
+      <div class="sidebar__section-title">Projects</div>
+      <ul class="sidebar__project-list">
+        <li>
+          <button
+            type="button"
+            class="sidebar__project-item"
+            [class.sidebar__project-item--active]="isProjectSelected(null)"
+            (click)="selectProject(null)"
+          >
+            All projects
+          </button>
+        </li>
+        @for (project of projects(); track project.id) {
+          <li>
+            <button
+              type="button"
+              class="sidebar__project-item"
+              [class.sidebar__project-item--active]="isProjectSelected(project.id)"
+              (click)="selectProject(project.id)"
+            >
+              {{ project.name }}
+            </button>
+          </li>
+        }
+      </ul>
+    </div>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <button
+        type="button"
+        mat-icon-button
+        class="topbar__burger"
+        aria-label="Toggle sidebar"
+        (click)="toggleSidebar()"
+      >
+        <mat-icon>menu</mat-icon>
+      </button>
+
+      <mat-form-field appearance="outline" class="topbar__search">
+        <mat-icon matPrefix>search</mat-icon>
+        <input
+          matInput
+          placeholder="Search tasks..."
+          [ngModel]="searchTerm()"
+          (ngModelChange)="onSearchInput($event)"
+        />
+      </mat-form-field>
+
+      <span class="topbar__spacer"></span>
+
+      <button
+        type="button"
+        mat-icon-button
+        aria-label="Settings"
+        [matMenuTriggerFor]="settingsMenu"
+      >
+        <mat-icon>settings</mat-icon>
+      </button>
+      <mat-menu #settingsMenu="matMenu" class="topbar__settings-menu">
+        <div (click)="$event.stopPropagation()">
+          <app-settings-panel></app-settings-panel>
+        </div>
+      </mat-menu>
+    </header>
+
+    <main class="content">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+</div>

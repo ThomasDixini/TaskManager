@@ -148,7 +148,7 @@ Assignees/multi-user (PRD Non-Goal) are excluded from this board entirely — no
 | ~~501~~ | 5 | ~~Subtask list component~~ | high | S | 401 |
 | ~~502~~ | 5 | ~~Comment feed component~~ | medium | S | 402 |
 | ~~601~~ | 6 | ~~Compose drawer (wire subtask list + comment feed)~~ | high | S | 404, 501, 502 |
-| 701 | 7 | Final integration (app shell, routing, board updates) | high | M | 601, 403, 405, 305 |
+| ~~701~~ | 7 | ~~Final integration (app shell, routing, board updates)~~ | high | M | 601, 403, 405, 305 |
 
 ## In progress
 
@@ -176,3 +176,4 @@ _(empty)_
 | 501 | 5 | Subtask list component |
 | 502 | 5 | Comment feed component |
 | 601 | 6 | Compose drawer |
+| 701 | 7 | Final integration |

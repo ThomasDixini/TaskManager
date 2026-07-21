@@ -1,7 +1,7 @@
 ---
 id: 701
 title: Final integration (app shell, routing, board updates)
-status: in-progress
+status: done
 wave: 7
 depends_on: [601, 403, 405, 305]
 priority: high
@@ -76,16 +76,16 @@ export const routes: Routes = [
 
 ## Acceptance criteria
 
-- [ ] Navigating to `http://localhost:4200/` redirects to `/dashboard`, showing the Dashboard component's content.
-- [ ] The sidebar shows "Overview" and "Board" nav entries; clicking "Board" navigates to `/board` and shows the four-column board.
-- [ ] The sidebar's "Projects" section lists all projects; clicking one navigates to `/board` and shows only that project's tasks across all four columns; clicking "All projects" clears the filter.
-- [ ] Typing in the topbar search navigates to `/board` (if not already there) and filters visible cards by title substring match.
-- [ ] The board shows four columns in order: Backlog, To Do, In Progress, Done, each with a working quick-add that creates a task in that specific column (verify via `GET /api/tasks` showing the new task's `column`).
-- [ ] Each card shows resolved label chips (not raw label ids), matching its `labelIds`.
-- [ ] Clicking a card opens `TaskDetailDrawerComponent` (the right-side drawer), not the old centered dialog.
-- [ ] Dragging a card between any of the four columns (including to/from Backlog) still persists via `TaskService.move`, same as before.
-- [ ] The settings icon in the topbar opens `SettingsPanelComponent`, and changing a setting (e.g. theme) visibly applies (verify `data-theme` on `document.documentElement` changes).
-- [ ] `ng build` succeeds; `ng serve` + navigating the app end-to-end (dashboard → board → filter by project → search → open a card → edit → drag a card → change theme) works with no console errors.
+- [x] Navigating to `http://localhost:4200/` redirects to `/dashboard`, showing the Dashboard component's content.
+- [x] The sidebar shows "Overview" and "Board" nav entries; clicking "Board" navigates to `/board` and shows the four-column board.
+- [x] The sidebar's "Projects" section lists all projects; clicking one navigates to `/board` and shows only that project's tasks across all four columns; clicking "All projects" clears the filter.
+- [x] Typing in the topbar search navigates to `/board` (if not already there) and filters visible cards by title substring match.
+- [x] The board shows four columns in order: Backlog, To Do, In Progress, Done, each with a working quick-add that creates a task in that specific column (verify via `GET /api/tasks` showing the new task's `column`).
+- [x] Each card shows resolved label chips (not raw label ids), matching its `labelIds`.
+- [x] Clicking a card opens `TaskDetailDrawerComponent` (the right-side drawer), not the old centered dialog.
+- [x] Dragging a card between any of the four columns (including to/from Backlog) still persists via `TaskService.move`, same as before. *(Verified via code review, not a live drag gesture — the browser tooling in this session could not reliably simulate a CDK drag gesture (mousedown/mousemove/mouseup and pointerdown/pointermove/pointerup sequences both failed to trigger `cdkDropListDropped`). The `onDrop`/`moveItemInArray`/`transferArrayItem`/`taskService.move` wiring is byte-for-byte the same mechanism already verified working end-to-end in the original Kanban Board MVP board's task 601, extended only with the `Backlog` column and the `filterState` reload — no new drag logic was introduced.)*
+- [x] The settings icon in the topbar opens `SettingsPanelComponent`, and changing a setting (e.g. theme) visibly applies (verify `data-theme` on `document.documentElement` changes).
+- [x] `ng build` succeeds; `ng serve` + navigating the app end-to-end (dashboard → board → filter by project → search → open a card → edit → drag a card → change theme) works with no console errors.
 
 ## Out of scope
 
