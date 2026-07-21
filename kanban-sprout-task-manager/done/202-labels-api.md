@@ -1,7 +1,7 @@
 ---
 id: 202
 title: Labels API
-status: in-progress
+status: done
 wave: 2
 depends_on: [102]
 priority: medium
@@ -50,9 +50,9 @@ This is the exact contract the frontend Label service (a later task) will consum
 
 ## Acceptance criteria
 
-- [ ] `GET /api/labels` returns `200 OK` with exactly 7 items, each `{ id, name, tone }`, matching the seeded catalog (`design`/Design/coral, `research`/Research/violet, `writing`/Writing/amber, `bug`/Bug/rose, `chore`/Chore/slate, `health`/Health/teal, `learning`/Learning/blue).
-- [ ] Response JSON field names are exactly `id`, `name`, `tone` (camelCase).
-- [ ] `dotnet build` succeeds.
+- [x] `GET /api/labels` returns `200 OK` with exactly 7 items, each `{ id, name, tone }`, matching the seeded catalog (`design`/Design/coral, `research`/Research/violet, `writing`/Writing/amber, `bug`/Bug/rose, `chore`/Chore/slate, `health`/Health/teal, `learning`/Learning/blue).
+- [x] Response JSON field names are exactly `id`, `name`, `tone` (camelCase).
+- [x] `dotnet build` succeeds.
 
 ## Out of scope
 
