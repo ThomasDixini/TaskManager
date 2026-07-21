@@ -1,7 +1,7 @@
 ---
 id: 402
 title: Frontend Comment model + service
-status: in-progress
+status: done
 wave: 4
 depends_on: [302]
 priority: medium
@@ -53,9 +53,9 @@ This service is deliberately stateless (no signal, no cached list) — the calle
 
 ## Acceptance criteria
 
-- [ ] `Comment` interface matches `{ id: number, text: string, createdAt: string }`.
-- [ ] `create(taskId, 'Looks good')` performs `POST /api/tasks/{taskId}/comments` with `{ text: 'Looks good' }` and resolves with the created comment (verify against the live backend).
-- [ ] `ng build` succeeds with no type ambiguity errors between this `Comment` interface and any global/DOM type.
+- [x] `Comment` interface matches `{ id: number, text: string, createdAt: string }`.
+- [x] `create(taskId, 'Looks good')` performs `POST /api/tasks/{taskId}/comments` with `{ text: 'Looks good' }` and resolves with the created comment (verify against the live backend).
+- [x] `ng build` succeeds with no type ambiguity errors between this `Comment` interface and any global/DOM type.
 
 ## Out of scope
 
