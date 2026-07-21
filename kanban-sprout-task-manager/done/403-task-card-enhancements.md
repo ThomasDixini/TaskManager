@@ -1,7 +1,7 @@
 ---
 id: 403
 title: Task card enhancements (labels, due, subtask progress, comments)
-status: in-progress
+status: done
 wave: 4
 depends_on: [303]
 priority: high
@@ -64,17 +64,17 @@ Due-date badge text/state logic (a pure function, can live as a private method o
 
 ## Acceptance criteria
 
-- [ ] With `labels = [{id:'bug', name:'Bug', tone:'rose'}]`, the card renders a "Bug" chip tinted with the rose tone.
-- [ ] With `labels = []`, no label chips render.
-- [ ] With `task.dueDate` set to today's date (formatted "yyyy-MM-dd"), the card shows a "Today" badge with tinted background.
-- [ ] With `task.dueDate` set to a date 3 days from now, the card shows a "3d" badge with no tinted background.
-- [ ] With `task.dueDate` set to a date 2 days in the past, the card shows a "2d overdue" badge with tinted background.
-- [ ] With `task.dueDate === null`, no due badge renders.
-- [ ] With `task.subtaskTotal = 4, subtaskDone = 2`, the card shows a progress bar at 50% width and the text "2/4".
-- [ ] With `task.subtaskTotal = 0`, no subtask progress UI renders.
-- [ ] With `task.commentCount = 3`, a comment indicator showing "3" renders; with `commentCount = 0`, it doesn't.
-- [ ] Existing behavior (title, project badge, priority badge, `cardClick` emission) is unchanged.
-- [ ] `ng build` succeeds.
+- [x] With `labels = [{id:'bug', name:'Bug', tone:'rose'}]`, the card renders a "Bug" chip tinted with the rose tone.
+- [x] With `labels = []`, no label chips render.
+- [x] With `task.dueDate` set to today's date (formatted "yyyy-MM-dd"), the card shows a "Today" badge with tinted background.
+- [x] With `task.dueDate` set to a date 3 days from now, the card shows a "3d" badge with no tinted background.
+- [x] With `task.dueDate` set to a date 2 days in the past, the card shows a "2d overdue" badge with tinted background.
+- [x] With `task.dueDate === null`, no due badge renders.
+- [x] With `task.subtaskTotal = 4, subtaskDone = 2`, the card shows a progress bar at 50% width and the text "2/4".
+- [x] With `task.subtaskTotal = 0`, no subtask progress UI renders.
+- [x] With `task.commentCount = 3`, a comment indicator showing "3" renders; with `commentCount = 0`, it doesn't.
+- [x] Existing behavior (title, project badge, priority badge, `cardClick` emission) is unchanged.
+- [x] `ng build` succeeds.
 
 ## Out of scope
 

@@ -142,7 +142,7 @@ Assignees/multi-user (PRD Non-Goal) are excluded from this board entirely — no
 | ~~305~~ | 3 | ~~Settings panel component~~ | low | S | 203 |
 | ~~401~~ | 4 | ~~Frontend Subtask model + service~~ | high | S | 301 |
 | ~~402~~ | 4 | ~~Frontend Comment model + service~~ | medium | S | 302 |
-| 403 | 4 | Task card enhancements (labels, due, subtask progress, comments) | high | M | 303 |
+| ~~403~~ | 4 | ~~Task card enhancements (labels, due, subtask progress, comments)~~ | high | M | 303 |
 | 404 | 4 | Task detail drawer shell | high | M | 303, 304 |
 | 405 | 4 | Dashboard component | high | M | 303 |
 | 501 | 5 | Subtask list component | high | S | 401 |
@@ -170,3 +170,4 @@ _(empty)_
 | 305 | 3 | Settings panel component |
 | 401 | 4 | Frontend Subtask model + service |
 | 402 | 4 | Frontend Comment model + service |
+| 403 | 4 | Task card enhancements |

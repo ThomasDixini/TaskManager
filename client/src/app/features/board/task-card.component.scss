@@ -70,3 +70,85 @@
     color: color-mix(in oklab, var(--tone-rose) 68%, var(--ink));
   }
 }
+
+.task-card__labels {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.label-chip {
+  font-weight: 600;
+}
+
+.due-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-family: "Instrument Sans", system-ui, sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.6;
+  white-space: nowrap;
+  color: var(--ink-2);
+
+  &.due-over {
+    background: color-mix(in oklab, var(--tone-rose) 15%, var(--surface));
+    color: color-mix(in oklab, var(--tone-rose) 68%, var(--ink));
+  }
+
+  &.due-today {
+    background: color-mix(in oklab, var(--tone-coral) 15%, var(--surface));
+    color: color-mix(in oklab, var(--tone-coral) 68%, var(--ink));
+  }
+
+  &.due-soon,
+  &.due-far {
+    padding: 2px 0;
+  }
+}
+
+.task-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.subtask-progress {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.subtask-progress__bar {
+  flex: 1 1 auto;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--surface-3);
+  overflow: hidden;
+}
+
+.subtask-progress__fill {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 2px;
+}
+
+.subtask-progress__label {
+  font-size: 11px;
+  color: var(--ink-2);
+  white-space: nowrap;
+}
+
+.comment-count {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  color: var(--ink-2);
+  white-space: nowrap;
+}

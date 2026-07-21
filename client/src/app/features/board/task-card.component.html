@@ -1,6 +1,18 @@
 <div class="task-card" (click)="onCardClick()">
   <div class="task-card__title">{{ task.title }}</div>
 
+  @if (labels.length) {
+    <div class="task-card__labels">
+      @for (label of labels; track label.id) {
+        <span
+          class="badge label-chip"
+          [style.background]="toneBackground(label.tone)"
+          [style.color]="toneColor(label.tone)"
+        >{{ label.name }}</span>
+      }
+    </div>
+  }
+
   <div class="task-card__meta">
     @if (projectName) {
       <span class="badge badge-project">{{ projectName }}</span>
@@ -9,5 +21,34 @@
     @if (task.priority) {
       <span class="badge priority-badge" [ngClass]="priorityClass">{{ task.priority }}</span>
     }
+
+    @if (dueBadge; as badge) {
+      <span class="due-badge" [ngClass]="'due-' + badge.state">{{ badge.text }}</span>
+    }
   </div>
+
+  @if (task.subtaskTotal > 0 || task.commentCount > 0) {
+    <div class="task-card__footer">
+      @if (task.subtaskTotal > 0) {
+        <div class="subtask-progress">
+          <div class="subtask-progress__bar">
+            <div class="subtask-progress__fill" [style.width.%]="subtaskProgressPct"></div>
+          </div>
+          <span class="subtask-progress__label">{{ task.subtaskDone }}/{{ task.subtaskTotal }}</span>
+        </div>
+      }
+
+      @if (task.commentCount > 0) {
+        <span class="comment-count">
+          <svg viewBox="0 0 16 16" width="13" height="13" aria-hidden="true">
+            <path
+              fill="currentColor"
+              d="M2 2.5A1.5 1.5 0 0 1 3.5 1h9A1.5 1.5 0 0 1 14 2.5v6A1.5 1.5 0 0 1 12.5 10H6.62l-2.85 2.28A.5.5 0 0 1 3 11.9V10h-.5A1.5 1.5 0 0 1 1 8.5v-6z"
+            />
+          </svg>
+          {{ task.commentCount }}
+        </span>
+      }
+    </div>
+  }
 </div>
