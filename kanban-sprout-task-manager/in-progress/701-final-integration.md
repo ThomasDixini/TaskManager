@@ -1,7 +1,7 @@
 ---
 id: 701
 title: Final integration (app shell, routing, board updates)
-status: backlog
+status: in-progress
 wave: 7
 depends_on: [601, 403, 405, 305]
 priority: high
