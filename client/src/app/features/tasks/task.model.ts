@@ -1,4 +1,4 @@
-export type BoardColumn = 'Backlog' | 'ToDo' | 'InProgress' | 'Done';
+export type BoardColumn = string;
 export type TaskPriority = 'Low' | 'Medium' | 'High';
 
 export interface Task {

@@ -102,8 +102,9 @@ Source PRD: [../prd-board-customization.md](../prd-board-customization.md)
 |----|------|------|
 | 101 | 1 | Labels API — create/update/delete endpoints |
 | 102 | 1 | Column entity + migration + TaskPositionService/TasksController/DTO updates |
-| 103 | 1 | Frontend `BoardColumn` type loosened to `string` |
 
 ## Done
 
-_(empty)_
+| ID | Wave | Task |
+|----|------|------|
+| 103 | 1 | Frontend `BoardColumn` type loosened to `string` |

@@ -1,7 +1,7 @@
 ---
 id: 103
 title: Frontend BoardColumn type loosened to string
-status: in-progress
+status: done
 wave: 1
 depends_on: []
 priority: medium
@@ -60,10 +60,10 @@ This exact widened type (`BoardColumn = string`) is the contract that later task
 
 ## Acceptance criteria
 
-- [ ] `BoardColumn` is `string` in `task.model.ts`.
-- [ ] `ng build` succeeds with no new type errors anywhere in the app.
-- [ ] `ng test --watch=false` still passes (existing `task.service.spec.ts` tests, which use string literals like `'ToDo'` for `column`, continue to pass unchanged).
-- [ ] No other file was modified by this task beyond the two listed.
+- [x] `BoardColumn` is `string` in `task.model.ts`.
+- [x] `ng build` succeeds with no new type errors anywhere in the app.
+- [x] `ng test --watch=false` still passes (existing `task.service.spec.ts` tests, which use string literals like `'ToDo'` for `column`, continue to pass unchanged).
+- [x] No other file was modified by this task beyond the two listed.
 
 ## Out of scope
 
