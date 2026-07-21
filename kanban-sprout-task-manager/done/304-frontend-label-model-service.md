@@ -1,7 +1,7 @@
 ---
 id: 304
 title: Frontend Label model + service
-status: in-progress
+status: done
 wave: 3
 depends_on: [202]
 priority: medium
@@ -55,10 +55,10 @@ This exact public surface (`labels` signal, `load()`) is what later tasks (task 
 
 ## Acceptance criteria
 
-- [ ] `Label` interface matches `{ id: string, name: string, tone: string }`.
-- [ ] `LabelService.labels` is a readable signal, starting as `[]`.
-- [ ] Calling `load()` (with the backend running) populates `labels()` with all 7 catalog entries returned by `GET /api/labels`, each with correct `id`/`name`/`tone`.
-- [ ] `ng build` succeeds.
+- [x] `Label` interface matches `{ id: string, name: string, tone: string }`.
+- [x] `LabelService.labels` is a readable signal, starting as `[]`.
+- [x] Calling `load()` (with the backend running) populates `labels()` with all 7 catalog entries returned by `GET /api/labels`, each with correct `id`/`name`/`tone`.
+- [x] `ng build` succeeds.
 
 ## Out of scope
 
