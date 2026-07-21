@@ -1,7 +1,7 @@
 ---
 id: 301
 title: Subtasks API
-status: in-progress
+status: done
 wave: 3
 depends_on: [102, 201]
 priority: high
@@ -74,13 +74,13 @@ public class ToggleSubtaskRequest
 
 ## Acceptance criteria
 
-- [ ] `POST /api/tasks/{id}/subtasks` with `{ "text": "Draft outline" }` returns `201` with `{ id, text: "Draft outline", done: false, position: 0 }` for the first subtask on that task; a second call returns `position: 1`.
-- [ ] `POST /api/tasks/{nonexistent}/subtasks` returns `404`.
-- [ ] `PATCH /api/tasks/{id}/subtasks/{subtaskId}` with `{ "done": true }` returns `200` with `done: true`; a subsequent `GET /api/tasks/{id}` (from task 201) shows the subtask as done and the task's `subtaskDone` count incremented (verify via the list endpoint's `subtaskTotal`/`subtaskDone` fields too).
-- [ ] `PATCH` on a subtask id that doesn't belong to the given task id returns `404`.
-- [ ] `PATCH /api/tasks/{id}/subtasks/{nonexistent}` returns `404`.
-- [ ] `server/Dtos/TaskDetailDto.cs` still compiles and `GET /api/tasks/{id}` still returns subtasks correctly, now sourced from the moved `SubtaskDto` in its own file.
-- [ ] `dotnet build` succeeds.
+- [x] `POST /api/tasks/{id}/subtasks` with `{ "text": "Draft outline" }` returns `201` with `{ id, text: "Draft outline", done: false, position: 0 }` for the first subtask on that task; a second call returns `position: 1`.
+- [x] `POST /api/tasks/{nonexistent}/subtasks` returns `404`.
+- [x] `PATCH /api/tasks/{id}/subtasks/{subtaskId}` with `{ "done": true }` returns `200` with `done: true`; a subsequent `GET /api/tasks/{id}` (from task 201) shows the subtask as done and the task's `subtaskDone` count incremented (verify via the list endpoint's `subtaskTotal`/`subtaskDone` fields too).
+- [x] `PATCH` on a subtask id that doesn't belong to the given task id returns `404`.
+- [x] `PATCH /api/tasks/{id}/subtasks/{nonexistent}` returns `404`.
+- [x] `server/Dtos/TaskDetailDto.cs` still compiles and `GET /api/tasks/{id}` still returns subtasks correctly, now sourced from the moved `SubtaskDto` in its own file.
+- [x] `dotnet build` succeeds.
 
 ## Out of scope
 
