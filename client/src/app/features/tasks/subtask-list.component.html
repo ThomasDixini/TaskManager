@@ -1,0 +1,38 @@
+<div class="subtask-list">
+  @if (totalCount() > 0) {
+    <div class="progress-summary" data-testid="subtask-progress">
+      <span class="progress-text">{{ doneCount() }}/{{ totalCount() }}</span>
+      <div class="progress-bar">
+        <div class="progress-bar-fill" [style.width.%]="progressPercent()"></div>
+      </div>
+    </div>
+  }
+
+  <ul class="subtask-items">
+    @for (subtask of items(); track subtask.id) {
+      <li class="subtask-item">
+        <mat-checkbox
+          [checked]="subtask.done"
+          [disabled]="isToggling(subtask.id)"
+          (change)="onToggle(subtask, $event)"
+          data-testid="subtask-checkbox"
+        >
+          <span class="subtask-text" [class.done]="subtask.done">{{ subtask.text }}</span>
+        </mat-checkbox>
+      </li>
+    }
+  </ul>
+
+  <mat-form-field appearance="outline" class="add-subtask-field">
+    <input
+      matInput
+      placeholder="Add a subtask…"
+      [ngModel]="newSubtaskText"
+      (ngModelChange)="newSubtaskText = $event"
+      [ngModelOptions]="{ standalone: true }"
+      [disabled]="isAdding()"
+      (keydown.enter)="addSubtask()"
+      data-testid="add-subtask-input"
+    />
+  </mat-form-field>
+</div>

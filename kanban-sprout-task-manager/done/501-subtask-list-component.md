@@ -1,7 +1,7 @@
 ---
 id: 501
 title: Subtask list component
-status: in-progress
+status: done
 wave: 5
 depends_on: [401]
 priority: high
@@ -54,11 +54,11 @@ export interface Subtask { id: number; text: string; done: boolean; position: nu
 
 ## Acceptance criteria
 
-- [ ] Given `subtasks = [{id:1,text:'A',done:false,position:0}, {id:2,text:'B',done:true,position:1}]`, the component renders two rows, "A" unchecked and "B" checked-with-strikethrough, and a "1/2" progress summary.
-- [ ] Clicking the checkbox for "A" calls `subtaskService.toggle(taskId, 1, true)`; on resolution, the row updates to checked/strikethrough and `subtasksChanged` emits an array where subtask 1 now has `done: true`.
-- [ ] Typing "C" into the add input and pressing Enter calls `subtaskService.create(taskId, 'C')`; on resolution, a new row for "C" appears (unchecked), the input clears, and `subtasksChanged` emits the array including the new subtask.
-- [ ] With `subtasks = []`, the list area is empty (no error) and the add input still works.
-- [ ] `ng build` succeeds (the component doesn't need to be embedded anywhere yet — that's task 601's job).
+- [x] Given `subtasks = [{id:1,text:'A',done:false,position:0}, {id:2,text:'B',done:true,position:1}]`, the component renders two rows, "A" unchecked and "B" checked-with-strikethrough, and a "1/2" progress summary.
+- [x] Clicking the checkbox for "A" calls `subtaskService.toggle(taskId, 1, true)`; on resolution, the row updates to checked/strikethrough and `subtasksChanged` emits an array where subtask 1 now has `done: true`.
+- [x] Typing "C" into the add input and pressing Enter calls `subtaskService.create(taskId, 'C')`; on resolution, a new row for "C" appears (unchecked), the input clears, and `subtasksChanged` emits the array including the new subtask.
+- [x] With `subtasks = []`, the list area is empty (no error) and the add input still works.
+- [x] `ng build` succeeds (the component doesn't need to be embedded anywhere yet — that's task 601's job).
 
 ## Out of scope
 
