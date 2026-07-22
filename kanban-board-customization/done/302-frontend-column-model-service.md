@@ -1,7 +1,7 @@
 ---
 id: 302
 title: Frontend Column model + service
-status: in-progress
+status: done
 wave: 3
 depends_on: [201]
 priority: high
@@ -88,15 +88,15 @@ This exact public surface is what later tasks (401 board component, 402 task det
 
 ## Acceptance criteria
 
-- [ ] `Column` interface matches `{ id: number, name: string, hint: string | null, position: number, isDefault: boolean }`.
-- [ ] `columnDisplayLabel('ToDo')` returns `'To Do'`, `columnDisplayLabel('InProgress')` returns `'In Progress'`, `columnDisplayLabel('Backlog')` returns `'Backlog'`, `columnDisplayLabel('Done')` returns `'Done'`, and `columnDisplayLabel('Review')` (an arbitrary custom name) returns `'Review'` unchanged.
-- [ ] `ColumnService.columns` is a readable signal, starting as `[]`.
-- [ ] Calling `load()` (with the backend running) populates `columns()` with the 4 seeded defaults, ordered by `position`.
-- [ ] `create('Review')` performs `POST /api/columns` with `{ name: 'Review' }`, resolves with the created column, and the new column appears in `columns()` afterward (verify against the live backend).
-- [ ] `rename(id, 'In Review')` performs `PUT /api/columns/{id}` with `{ name: 'In Review' }`, resolves with the updated column, and `columns()` reflects the rename for that entry only.
-- [ ] `delete(id)` performs `DELETE /api/columns/{id}`, and on resolution that column is no longer present in `columns()`.
-- [ ] `reorder([...])` performs `PATCH /api/columns/reorder`, and on resolution `columns()` reflects the new order.
-- [ ] `ng build` succeeds.
+- [x] `Column` interface matches `{ id: number, name: string, hint: string | null, position: number, isDefault: boolean }`.
+- [x] `columnDisplayLabel('ToDo')` returns `'To Do'`, `columnDisplayLabel('InProgress')` returns `'In Progress'`, `columnDisplayLabel('Backlog')` returns `'Backlog'`, `columnDisplayLabel('Done')` returns `'Done'`, and `columnDisplayLabel('Review')` (an arbitrary custom name) returns `'Review'` unchanged.
+- [x] `ColumnService.columns` is a readable signal, starting as `[]`.
+- [x] Calling `load()` (with the backend running) populates `columns()` with the 4 seeded defaults, ordered by `position`.
+- [x] `create('Review')` performs `POST /api/columns` with `{ name: 'Review' }`, resolves with the created column, and the new column appears in `columns()` afterward (verify against the live backend).
+- [x] `rename(id, 'In Review')` performs `PUT /api/columns/{id}` with `{ name: 'In Review' }`, resolves with the updated column, and `columns()` reflects the rename for that entry only.
+- [x] `delete(id)` performs `DELETE /api/columns/{id}`, and on resolution that column is no longer present in `columns()`.
+- [x] `reorder([...])` performs `PATCH /api/columns/reorder`, and on resolution `columns()` reflects the new order.
+- [x] `ng build` succeeds.
 
 ## Out of scope
 
