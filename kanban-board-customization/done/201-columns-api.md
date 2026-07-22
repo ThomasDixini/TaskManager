@@ -1,7 +1,7 @@
 ---
 id: 201
 title: Columns API — list, create, rename, delete, reorder
-status: in-progress
+status: done
 wave: 2
 depends_on: [102]
 priority: high
@@ -92,18 +92,18 @@ This exact contract is what a later task (302, frontend `ColumnService`) will co
 
 ## Acceptance criteria
 
-- [ ] `GET /api/columns` returns the 4 seeded defaults ordered by `Position`, each `{ id, name, hint, position, isDefault: true }`.
-- [ ] `POST /api/columns` with `{ "name": "Review" }` returns `201` with `{ id, name: "Review", hint: null, position: 4, isDefault: false }` (assuming the 4 defaults occupy positions 0-3).
-- [ ] `POST /api/columns` with a name that case-insensitively collides with an existing column (e.g. `"backlog"`) returns `400`.
-- [ ] `PUT /api/columns/{id}` on a custom column renames it; `GET /api/columns` reflects the new name.
-- [ ] `PUT /api/columns/{id}` on one of the 4 default columns (e.g. the "Done" column's id) returns `400`.
-- [ ] `PUT /api/columns/{nonexistent}` returns `404`.
-- [ ] `DELETE /api/columns/{id}` on a custom column that has at least one task in it (create a task via the existing Tasks API with `"column": "Review"` first) returns `204`; a subsequent `GET /api/tasks` shows that task now has `column: "Backlog"`; a subsequent `GET /api/columns` no longer includes "Review" and the remaining columns' `position` values are still a contiguous 0-based sequence.
-- [ ] `DELETE /api/columns/{id}` on one of the 4 default columns returns `400`.
-- [ ] `DELETE /api/columns/{nonexistent}` returns `404`.
-- [ ] `PATCH /api/columns/reorder` with a full, valid reordering (e.g. swapping "InProgress" and "Done"'s positions) returns `200` with columns in the new order; `GET /api/columns` reflects the new order afterward.
-- [ ] `PATCH /api/columns/reorder` with a malformed id set (missing an id, or an unknown id) returns `400`.
-- [ ] `dotnet build` succeeds.
+- [x] `GET /api/columns` returns the 4 seeded defaults ordered by `Position`, each `{ id, name, hint, position, isDefault: true }`.
+- [x] `POST /api/columns` with `{ "name": "Review" }` returns `201` with `{ id, name: "Review", hint: null, position: 4, isDefault: false }` (assuming the 4 defaults occupy positions 0-3).
+- [x] `POST /api/columns` with a name that case-insensitively collides with an existing column (e.g. `"backlog"`) returns `400`.
+- [x] `PUT /api/columns/{id}` on a custom column renames it; `GET /api/columns` reflects the new name.
+- [x] `PUT /api/columns/{id}` on one of the 4 default columns (e.g. the "Done" column's id) returns `400`.
+- [x] `PUT /api/columns/{nonexistent}` returns `404`.
+- [x] `DELETE /api/columns/{id}` on a custom column that has at least one task in it (create a task via the existing Tasks API with `"column": "Review"` first) returns `204`; a subsequent `GET /api/tasks` shows that task now has `column: "Backlog"`; a subsequent `GET /api/columns` no longer includes "Review" and the remaining columns' `position` values are still a contiguous 0-based sequence.
+- [x] `DELETE /api/columns/{id}` on one of the 4 default columns returns `400`.
+- [x] `DELETE /api/columns/{nonexistent}` returns `404`.
+- [x] `PATCH /api/columns/reorder` with a full, valid reordering (e.g. swapping "InProgress" and "Done"'s positions) returns `200` with columns in the new order; `GET /api/columns` reflects the new order afterward.
+- [x] `PATCH /api/columns/reorder` with a malformed id set (missing an id, or an unknown id) returns `400`.
+- [x] `dotnet build` succeeds.
 
 ## Out of scope
 
