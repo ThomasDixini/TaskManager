@@ -1,7 +1,7 @@
 ---
 id: 402
 title: Task detail drawer — dynamic Status segmented control
-status: backlog
+status: in-progress
 wave: 4
 depends_on: [302, 103]
 priority: medium

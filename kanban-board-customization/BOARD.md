@@ -91,14 +91,18 @@ Source PRD: [../prd-board-customization.md](../prd-board-customization.md)
 | ~~202~~ | 2 | ~~Frontend Label service extended with create/update/delete~~ | high | S | 101 |
 | ~~301~~ | 3 | ~~Labels management UI in the Settings panel~~ | high | M | 202 |
 | ~~302~~ | 3 | ~~Frontend Column model + service~~ | high | S | 201 |
-| 401 | 4 | Board component — dynamic columns, add/rename/delete, drag-to-reorder | high | M | 302, 103 |
-| 402 | 4 | Task detail drawer — dynamic Status segmented control | medium | S | 302, 103 |
-| 403 | 4 | Dashboard — verify stats stay correct with custom columns | medium | S | 103 |
+| ~~401~~ | 4 | ~~Board component — dynamic columns, add/rename/delete, drag-to-reorder~~ | high | M | 302, 103 |
+| ~~402~~ | 4 | ~~Task detail drawer — dynamic Status segmented control~~ | medium | S | 302, 103 |
+| ~~403~~ | 4 | ~~Dashboard — verify stats stay correct with custom columns~~ | medium | S | 103 |
 | 501 | 5 | Final integration — full regression pass + new service test coverage | high | M | 401, 402, 403 |
 
 ## In progress
 
-_(empty)_
+| ID | Wave | Task |
+|----|------|------|
+| 401 | 4 | Board component — dynamic columns, add/rename/delete, drag-to-reorder |
+| 402 | 4 | Task detail drawer — dynamic Status segmented control |
+| 403 | 4 | Dashboard — verify stats stay correct with custom columns |
 
 ## Done
 

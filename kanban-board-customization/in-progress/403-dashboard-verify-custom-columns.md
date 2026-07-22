@@ -1,7 +1,7 @@
 ---
 id: 403
 title: Dashboard — verify stats stay correct with custom columns
-status: backlog
+status: in-progress
 wave: 4
 depends_on: [103]
 priority: medium

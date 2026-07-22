@@ -1,7 +1,7 @@
 ---
 id: 401
 title: Board component — dynamic columns, add/rename/delete, drag-to-reorder
-status: backlog
+status: in-progress
 wave: 4
 depends_on: [302, 103]
 priority: high
