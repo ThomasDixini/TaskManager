@@ -1,7 +1,7 @@
 ---
 id: 501
 title: Final integration — full regression pass + new service test coverage
-status: in-progress
+status: done
 wave: 5
 depends_on: [401, 402, 403]
 priority: high
@@ -38,15 +38,15 @@ No new interface — this task verifies existing behavior and adds tests against
 
 ## Acceptance criteria
 
-- [ ] `dotnet build` and `dotnet run` (with Postgres running) both succeed with no errors against the existing dev database.
-- [ ] `ng build` succeeds with no errors.
-- [ ] `ng test --watch=false` passes, including the two new spec files added by this task, with no regressions in any pre-existing test.
-- [ ] Manually verified: label create → tag a task with it → rename/recolor it → delete it (task survives, tag is gone) — all reflected live with no stale UI anywhere.
-- [ ] Manually verified: column create → quick-add into it → drag-reorder it between two defaults → rename it (its cards still show) → delete it (its task now shows in Backlog) — all reflected live with no stale UI anywhere.
-- [ ] Manually verified: `PUT`/`DELETE` on a default column's id both return `400`.
-- [ ] Manually verified: Dashboard stats remain correct with a task in a custom column present.
-- [ ] Manually verified: no regression in subtasks, comments, personalization, projects, search, or card drag-and-drop.
-- [ ] `column.service.spec.ts` and `label.service.spec.ts` both exist and pass, covering every new method on their respective services.
+- [x] `dotnet build` and `dotnet run` (with Postgres running) both succeed with no errors against the existing dev database.
+- [x] `ng build` succeeds with no errors.
+- [x] `ng test --watch=false` passes, including the two new spec files added by this task, with no regressions in any pre-existing test (29/29 across 7 files).
+- [x] Manually verified: label create → tag a task with it → rename/recolor it → delete it (task survives, tag is gone) — all reflected live with no stale UI anywhere.
+- [x] Manually verified: column create → quick-add into it → drag-reorder it between two defaults → rename it (its cards still show) → delete it (its task now shows in Backlog) — all reflected live with no stale UI anywhere.
+- [x] Manually verified: `PUT`/`DELETE` on a default column's id both return `400`.
+- [x] Manually verified: Dashboard stats remain correct with a task in a custom column present.
+- [x] Manually verified: no regression in subtasks, comments, personalization, projects, search, or card drag-and-drop.
+- [x] `column.service.spec.ts` and `label.service.spec.ts` both exist and pass, covering every new method on their respective services.
 
 ## Out of scope
 
