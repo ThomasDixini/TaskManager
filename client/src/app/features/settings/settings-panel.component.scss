@@ -37,4 +37,87 @@
       box-shadow: 0 0 0 2px var(--surface, #fff);
     }
   }
+
+  &__labels {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  &__label-row {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__label-display {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  &__label-swatch {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  &__label-name {
+    flex: 1;
+    font-size: 13px;
+    color: var(--ink, #2b2620);
+  }
+
+  &__label-actions {
+    display: flex;
+    gap: 6px;
+
+    button {
+      font-size: 12px;
+      padding: 2px 8px;
+      border: 1px solid var(--ink-2, #726757);
+      background: transparent;
+      border-radius: 6px;
+      cursor: pointer;
+
+      &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+    }
+  }
+
+  &__label-edit,
+  &__label-new {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 8px;
+    border: 1px solid var(--ink-2, #726757);
+    border-radius: 8px;
+  }
+
+  &__label-delete-confirm {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 8px;
+    border: 1px solid var(--ink-2, #726757);
+    border-radius: 8px;
+  }
+
+  &__delete-confirm-text {
+    margin: 0;
+    font-size: 13px;
+  }
+
+  &__label-input {
+    font-size: 13px;
+    padding: 4px 8px;
+    border: 1px solid var(--ink-2, #726757);
+    border-radius: 6px;
+    background: var(--surface, #fff);
+    color: var(--ink, #2b2620);
+  }
 }

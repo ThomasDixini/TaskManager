@@ -53,4 +53,126 @@
       />
     </mat-slider>
   </div>
+
+  <div class="settings-panel__field">
+    <label class="settings-panel__label">Labels</label>
+    <div class="settings-panel__labels" data-testid="labels-list">
+      @for (label of labelService.labels(); track label.id) {
+        <div class="settings-panel__label-row">
+          @if (editingLabelId() === label.id) {
+            <div class="settings-panel__label-edit" data-testid="label-edit-form">
+              <input
+                type="text"
+                class="settings-panel__label-input"
+                [ngModel]="editLabelName()"
+                (ngModelChange)="onEditLabelNameChange($event)"
+                data-testid="edit-label-name-input"
+              />
+              <div class="settings-panel__swatches">
+                @for (tone of labelTones; track tone) {
+                  <button
+                    type="button"
+                    class="settings-panel__swatch"
+                    [class.is-selected]="editLabelTone() === tone"
+                    [style.background]="'var(--tone-' + tone + ')'"
+                    [attr.aria-label]="'Tone ' + tone"
+                    [attr.aria-pressed]="editLabelTone() === tone"
+                    (click)="onEditLabelToneChange(tone)"
+                  ></button>
+                }
+              </div>
+              <div class="settings-panel__label-actions">
+                <button
+                  type="button"
+                  [disabled]="isSavingLabelEdit()"
+                  (click)="saveLabelEdit(label.id)"
+                  data-testid="save-label-button"
+                >
+                  Save
+                </button>
+                <button type="button" (click)="cancelLabelEdit()" data-testid="cancel-label-edit-button">
+                  Cancel
+                </button>
+              </div>
+            </div>
+          } @else if (deleteConfirmLabelId() === label.id) {
+            <div class="settings-panel__label-delete-confirm" data-testid="label-delete-confirm">
+              <p class="settings-panel__delete-confirm-text">Delete '{{ label.name }}'?</p>
+              <div class="settings-panel__label-actions">
+                <button
+                  type="button"
+                  [disabled]="isDeletingLabel()"
+                  (click)="confirmDeleteLabel(label.id)"
+                  data-testid="confirm-delete-label-button"
+                >
+                  Yes
+                </button>
+                <button type="button" (click)="cancelDeleteLabel()" data-testid="cancel-delete-label-button">
+                  Cancel
+                </button>
+              </div>
+            </div>
+          } @else {
+            <div class="settings-panel__label-display">
+              <span
+                class="settings-panel__label-swatch"
+                [style.background]="'var(--tone-' + label.tone + ')'"
+              ></span>
+              <span class="settings-panel__label-name">{{ label.name }}</span>
+              <span class="settings-panel__label-actions">
+                <button
+                  type="button"
+                  (click)="startEditingLabel(label)"
+                  [attr.aria-label]="'Edit ' + label.name"
+                  data-testid="edit-label-button"
+                >
+                  Edit
+                </button>
+                <button
+                  type="button"
+                  (click)="requestDeleteLabel(label.id)"
+                  [attr.aria-label]="'Delete ' + label.name"
+                  data-testid="delete-label-button"
+                >
+                  Delete
+                </button>
+              </span>
+            </div>
+          }
+        </div>
+      }
+    </div>
+
+    <div class="settings-panel__label-new" data-testid="new-label-form">
+      <input
+        type="text"
+        class="settings-panel__label-input"
+        placeholder="New label name"
+        [ngModel]="newLabelName()"
+        (ngModelChange)="onNewLabelNameChange($event)"
+        data-testid="new-label-name-input"
+      />
+      <div class="settings-panel__swatches">
+        @for (tone of labelTones; track tone) {
+          <button
+            type="button"
+            class="settings-panel__swatch"
+            [class.is-selected]="newLabelTone() === tone"
+            [style.background]="'var(--tone-' + tone + ')'"
+            [attr.aria-label]="'Tone ' + tone"
+            [attr.aria-pressed]="newLabelTone() === tone"
+            (click)="onNewLabelToneChange(tone)"
+          ></button>
+        }
+      </div>
+      <button
+        type="button"
+        [disabled]="isCreatingLabel() || !newLabelName().trim()"
+        (click)="createLabel()"
+        data-testid="add-label-button"
+      >
+        + New label
+      </button>
+    </div>
+  </div>
 </div>

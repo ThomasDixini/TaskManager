@@ -98,9 +98,7 @@ Source PRD: [../prd-board-customization.md](../prd-board-customization.md)
 
 ## In progress
 
-| ID | Wave | Task |
-|----|------|------|
-| 301 | 3 | Labels management UI in the Settings panel |
+_(empty)_
 
 ## Done
 
@@ -111,4 +109,5 @@ Source PRD: [../prd-board-customization.md](../prd-board-customization.md)
 | 103 | 1 | Frontend `BoardColumn` type loosened to `string` |
 | 201 | 2 | Columns API — list, create, rename, delete, reorder |
 | 202 | 2 | Frontend Label service extended with create/update/delete |
+| 301 | 3 | Labels management UI in the Settings panel |
 | 302 | 3 | Frontend Column model + service |

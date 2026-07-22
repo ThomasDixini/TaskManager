@@ -1,7 +1,7 @@
 ---
 id: 301
 title: Labels management UI in the Settings panel
-status: in-progress
+status: done
 wave: 3
 depends_on: [202]
 priority: high
@@ -70,13 +70,13 @@ Its template renders the Accent control as a row of clickable swatches (one per 
 
 ## Acceptance criteria
 
-- [ ] The Labels section renders all 7 built-in labels plus any previously-created custom ones, each showing its tone swatch and name.
-- [ ] Filling the "+ New label" name field, picking a tone swatch, and submitting calls `labelService.create(name, tone)`; on resolution, the new label appears in the list and the form clears.
-- [ ] Clicking a label's edit affordance shows an editable name field and the 7-swatch tone picker, prefilled with its current name/tone.
-- [ ] Changing the name/tone and saving calls `labelService.update(id, newName, newTone)`; on resolution, the list reflects the change and edit mode closes.
-- [ ] Clicking a label's delete affordance shows a confirm step (not an immediate delete); clicking "Cancel" exits without calling `delete`; clicking confirm calls `labelService.delete(id)`, and on resolution the label disappears from the list.
-- [ ] The tone picker (both create and edit) only ever offers the 7 known tones — no free-form color input anywhere.
-- [ ] `ng build` succeeds.
+- [x] The Labels section renders all 7 built-in labels plus any previously-created custom ones, each showing its tone swatch and name.
+- [x] Filling the "+ New label" name field, picking a tone swatch, and submitting calls `labelService.create(name, tone)`; on resolution, the new label appears in the list and the form clears.
+- [x] Clicking a label's edit affordance shows an editable name field and the 7-swatch tone picker, prefilled with its current name/tone.
+- [x] Changing the name/tone and saving calls `labelService.update(id, newName, newTone)`; on resolution, the list reflects the change and edit mode closes.
+- [x] Clicking a label's delete affordance shows a confirm step (not an immediate delete); clicking "Cancel" exits without calling `delete`; clicking confirm calls `labelService.delete(id)`, and on resolution the label disappears from the list.
+- [x] The tone picker (both create and edit) only ever offers the 7 known tones — no free-form color input anywhere.
+- [x] `ng build` succeeds.
 
 ## Out of scope
 
