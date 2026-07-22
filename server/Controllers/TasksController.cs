@@ -32,7 +32,8 @@ public partial class TasksController : ControllerBase
 
         var rows = await query
             .Include(t => t.Labels)
-            .OrderBy(t => t.Column)
+            .Include(t => t.Column)
+            .OrderBy(t => t.Column!.Position)
             .ThenBy(t => t.Position)
             .Select(t => new
             {
@@ -52,6 +53,7 @@ public partial class TasksController : ControllerBase
     {
         var task = await _db.Tasks
             .Include(t => t.Labels)
+            .Include(t => t.Column)
             .FirstOrDefaultAsync(t => t.Id == id);
 
         if (task == null)
@@ -76,10 +78,15 @@ public partial class TasksController : ControllerBase
     [HttpPost]
     public async Task<ActionResult<TaskDto>> CreateTask(CreateTaskRequest request)
     {
-        var column = request.Column ?? BoardColumn.ToDo;
+        var columnName = request.Column ?? "ToDo";
+        var column = await _db.Columns.FirstOrDefaultAsync(c => c.Name == columnName);
+        if (column == null)
+        {
+            return BadRequest($"Unknown column: {columnName}");
+        }
 
         var maxPosition = await _db.Tasks
-            .Where(t => t.Column == column)
+            .Where(t => t.ColumnId == column.Id)
             .Select(t => (int?)t.Position)
             .MaxAsync();
         var position = maxPosition.HasValue ? maxPosition.Value + 1 : 0;
@@ -90,12 +97,14 @@ public partial class TasksController : ControllerBase
             Description = null,
             ProjectId = null,
             Priority = null,
-            Column = column,
+            ColumnId = column.Id,
             Position = position
         };
 
         _db.Tasks.Add(task);
         await _db.SaveChangesAsync();
+
+        task.Column = column;
 
         return Created($"/api/tasks/{task.Id}", MapToDto(task, 0, 0, 0));
     }
@@ -106,6 +115,7 @@ public partial class TasksController : ControllerBase
     {
         var task = await _db.Tasks
             .Include(t => t.Labels)
+            .Include(t => t.Column)
             .FirstOrDefaultAsync(t => t.Id == id);
         if (task == null)
         {
@@ -151,14 +161,21 @@ public partial class TasksController : ControllerBase
     [HttpPatch("{id}/move")]
     public async Task<ActionResult<TaskDto>> MoveTask(int id, MoveTaskRequest request)
     {
-        var task = await _positionService.MoveAsync(_db, id, request.Column, request.Position);
+        var column = await _db.Columns.FirstOrDefaultAsync(c => c.Name == request.Column);
+        if (column == null)
+        {
+            return BadRequest($"Unknown column: {request.Column}");
+        }
+
+        var task = await _positionService.MoveAsync(_db, id, column.Id, request.Position);
         if (task == null)
         {
             return NotFound();
         }
 
-        // Reload labels for the response DTO (MoveAsync loads the task without Include).
+        // Reload labels and column for the response DTO (MoveAsync loads the task without Include).
         await _db.Entry(task).Collection(t => t.Labels).LoadAsync();
+        await _db.Entry(task).Reference(t => t.Column).LoadAsync();
 
         var subtaskTotal = await _db.Subtasks.CountAsync(s => s.TaskItemId == id);
         var subtaskDone = await _db.Subtasks.CountAsync(s => s.TaskItemId == id && s.Done);
@@ -173,7 +190,7 @@ public partial class TasksController : ControllerBase
         task.Description,
         task.ProjectId,
         task.Priority?.ToString(),
-        task.Column.ToString(),
+        task.Column!.Name,
         task.Position,
         task.DueDate?.ToString("yyyy-MM-dd"),
         task.Labels.Select(l => l.Id).ToArray(),
@@ -187,7 +204,7 @@ public partial class TasksController : ControllerBase
         task.Description,
         task.ProjectId,
         task.Priority?.ToString(),
-        task.Column.ToString(),
+        task.Column!.Name,
         task.Position,
         task.DueDate?.ToString("yyyy-MM-dd"),
         task.Labels.Select(l => l.Id).ToArray(),

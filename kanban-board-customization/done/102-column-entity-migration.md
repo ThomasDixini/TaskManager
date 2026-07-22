@@ -1,7 +1,7 @@
 ---
 id: 102
 title: Column entity + migration + TaskPositionService/TasksController/DTO updates
-status: in-progress
+status: done
 wave: 1
 depends_on: []
 priority: high
@@ -135,19 +135,19 @@ public class MoveTaskRequest
 
 ## Acceptance criteria
 
-- [ ] `Column` entity exists exactly as specified; `BoardColumn` no longer exists anywhere in the codebase.
-- [ ] `dotnet build` succeeds with zero errors.
-- [ ] With Postgres running, `dotnet run` auto-applies the migration with no errors.
-- [ ] `SELECT * FROM "Columns"` (via `docker exec kanban-postgres psql -U kanban -d kanban -c '...'`) shows exactly the 4 seeded rows with correct `Name`/`Hint`/`Position`/`IsDefault` values.
-- [ ] For a task that existed in the database before this migration ran, its post-migration `ColumnId` correctly corresponds to its pre-migration `Column` enum value (0→1, 1→2, 2→3, 3→4) — verify by creating a task in a known column via the existing API *before* applying this migration, noting its column, then confirming after migration that `GET /api/tasks/{id}` still reports the same column name.
-- [ ] `GET /api/tasks` still returns `column: "Backlog"|"ToDo"|"InProgress"|"Done"` (unchanged string values) for existing tasks, correctly ordered by column display position then task position.
-- [ ] `GET /api/tasks/{id}` still returns the correct `column` string.
-- [ ] `POST /api/tasks` with `{ "title": "x" }` still creates in `"ToDo"` (unchanged default behavior).
-- [ ] `POST /api/tasks` with `{ "title": "x", "column": "Backlog" }` still creates the task with `column: "Backlog"`.
-- [ ] `POST /api/tasks` with an unknown `"column"` value (e.g. `"NotAColumn"`) returns `400`.
-- [ ] `PATCH /api/tasks/{id}/move` with `{ "column": "Done", "position": 0 }` still works exactly as before (moves the task, reindexes positions in both source and destination columns).
-- [ ] `PATCH /api/tasks/{id}/move` with an unknown `"column"` value returns `400`.
-- [ ] `DELETE /api/tasks/{id}` still works unchanged.
+- [x] `Column` entity exists exactly as specified; `BoardColumn` no longer exists anywhere in the codebase.
+- [x] `dotnet build` succeeds with zero errors.
+- [x] With Postgres running, `dotnet run` auto-applies the migration with no errors.
+- [x] `SELECT * FROM "Columns"` (via `docker exec kanban-postgres psql -U kanban -d kanban -c '...'`) shows exactly the 4 seeded rows with correct `Name`/`Hint`/`Position`/`IsDefault` values.
+- [x] For a task that existed in the database before this migration ran, its post-migration `ColumnId` correctly corresponds to its pre-migration `Column` enum value (0→1, 1→2, 2→3, 3→4) — verify by creating a task in a known column via the existing API *before* applying this migration, noting its column, then confirming after migration that `GET /api/tasks/{id}` still reports the same column name.
+- [x] `GET /api/tasks` still returns `column: "Backlog"|"ToDo"|"InProgress"|"Done"` (unchanged string values) for existing tasks, correctly ordered by column display position then task position.
+- [x] `GET /api/tasks/{id}` still returns the correct `column` string.
+- [x] `POST /api/tasks` with `{ "title": "x" }` still creates in `"ToDo"` (unchanged default behavior).
+- [x] `POST /api/tasks` with `{ "title": "x", "column": "Backlog" }` still creates the task with `column: "Backlog"`.
+- [x] `POST /api/tasks` with an unknown `"column"` value (e.g. `"NotAColumn"`) returns `400`.
+- [x] `PATCH /api/tasks/{id}/move` with `{ "column": "Done", "position": 0 }` still works exactly as before (moves the task, reindexes positions in both source and destination columns).
+- [x] `PATCH /api/tasks/{id}/move` with an unknown `"column"` value returns `400`.
+- [x] `DELETE /api/tasks/{id}` still works unchanged.
 
 ## Out of scope
 

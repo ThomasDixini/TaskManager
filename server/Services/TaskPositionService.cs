@@ -15,7 +15,7 @@ public class TaskPositionService
     /// <paramref name="targetPosition"/>, shifting the positions of the other tasks in the affected
     /// column(s) as needed. Returns the updated task, or <c>null</c> if no task with that id exists.
     /// </summary>
-    public async Task<TaskItem?> MoveAsync(AppDbContext db, int taskId, BoardColumn targetColumn, int targetPosition)
+    public async Task<TaskItem?> MoveAsync(AppDbContext db, int taskId, int targetColumnId, int targetPosition)
     {
         var task = await db.Tasks.FindAsync(taskId);
         if (task == null)
@@ -23,16 +23,16 @@ public class TaskPositionService
             return null;
         }
 
-        var oldColumn = task.Column;
+        var oldColumnId = task.ColumnId;
         var oldPosition = task.Position;
 
         // Clamp the requested position to the valid range for the destination column
         // (0..count of tasks that will remain in that column besides the one being moved).
         var destinationCount = await db.Tasks
-            .CountAsync(t => t.Column == targetColumn && t.Id != taskId);
+            .CountAsync(t => t.ColumnId == targetColumnId && t.Id != taskId);
         targetPosition = Math.Clamp(targetPosition, 0, destinationCount);
 
-        if (oldColumn == targetColumn)
+        if (oldColumnId == targetColumnId)
         {
             if (targetPosition == oldPosition)
             {
@@ -45,7 +45,7 @@ public class TaskPositionService
                 // Moving earlier in the column: shift the tasks between the new and old
                 // position down by one to make room.
                 var toShift = await db.Tasks
-                    .Where(t => t.Column == oldColumn
+                    .Where(t => t.ColumnId == oldColumnId
                         && t.Id != taskId
                         && t.Position >= targetPosition
                         && t.Position < oldPosition)
@@ -60,7 +60,7 @@ public class TaskPositionService
                 // Moving later in the column: shift the tasks between the old and new
                 // position up by one to close the gap left behind.
                 var toShift = await db.Tasks
-                    .Where(t => t.Column == oldColumn
+                    .Where(t => t.ColumnId == oldColumnId
                         && t.Id != taskId
                         && t.Position > oldPosition
                         && t.Position <= targetPosition)
@@ -77,7 +77,7 @@ public class TaskPositionService
         {
             // Close the gap left in the source column.
             var afterOldPosition = await db.Tasks
-                .Where(t => t.Column == oldColumn && t.Id != taskId && t.Position > oldPosition)
+                .Where(t => t.ColumnId == oldColumnId && t.Id != taskId && t.Position > oldPosition)
                 .ToListAsync();
             foreach (var t in afterOldPosition)
             {
@@ -86,14 +86,14 @@ public class TaskPositionService
 
             // Make room at the target position in the destination column.
             var atOrAfterTargetPosition = await db.Tasks
-                .Where(t => t.Column == targetColumn && t.Id != taskId && t.Position >= targetPosition)
+                .Where(t => t.ColumnId == targetColumnId && t.Id != taskId && t.Position >= targetPosition)
                 .ToListAsync();
             foreach (var t in atOrAfterTargetPosition)
             {
                 t.Position += 1;
             }
 
-            task.Column = targetColumn;
+            task.ColumnId = targetColumnId;
             task.Position = targetPosition;
         }
 
@@ -109,7 +109,7 @@ public class TaskPositionService
     public async Task RemoveAsync(AppDbContext db, TaskItem task)
     {
         var afterRemoved = await db.Tasks
-            .Where(t => t.Column == task.Column && t.Id != task.Id && t.Position > task.Position)
+            .Where(t => t.ColumnId == task.ColumnId && t.Id != task.Id && t.Position > task.Position)
             .ToListAsync();
         foreach (var t in afterRemoved)
         {

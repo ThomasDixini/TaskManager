@@ -14,6 +14,7 @@ public class AppDbContext : DbContext
     public DbSet<Label> Labels => Set<Label>();
     public DbSet<Subtask> Subtasks => Set<Subtask>();
     public DbSet<Comment> Comments => Set<Comment>();
+    public DbSet<Column> Columns => Set<Column>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -26,7 +27,13 @@ public class AppDbContext : DbContext
             .OnDelete(DeleteBehavior.SetNull);
 
         modelBuilder.Entity<TaskItem>()
-            .HasIndex(t => new { t.Column, t.Position });
+            .HasIndex(t => new { t.ColumnId, t.Position });
+
+        modelBuilder.Entity<TaskItem>()
+            .HasOne(t => t.Column)
+            .WithMany()
+            .HasForeignKey(t => t.ColumnId)
+            .OnDelete(DeleteBehavior.Restrict);
 
         modelBuilder.Entity<TaskItem>()
             .HasMany(t => t.Labels)
@@ -52,6 +59,13 @@ public class AppDbContext : DbContext
             new Label { Id = "chore", Name = "Chore", Tone = "slate" },
             new Label { Id = "health", Name = "Health", Tone = "teal" },
             new Label { Id = "learning", Name = "Learning", Tone = "blue" }
+        );
+
+        modelBuilder.Entity<Column>().HasData(
+            new Column { Id = 1, Name = "Backlog", Hint = "Ideas & someday", Position = 0, IsDefault = true },
+            new Column { Id = 2, Name = "ToDo", Hint = "This week", Position = 1, IsDefault = true },
+            new Column { Id = 3, Name = "InProgress", Hint = "Focus now", Position = 2, IsDefault = true },
+            new Column { Id = 4, Name = "Done", Hint = "Nice work", Position = 3, IsDefault = true }
         );
     }
 }
