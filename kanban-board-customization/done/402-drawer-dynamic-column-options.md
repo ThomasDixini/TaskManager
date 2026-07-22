@@ -1,7 +1,7 @@
 ---
 id: 402
 title: Task detail drawer — dynamic Status segmented control
-status: in-progress
+status: done
 wave: 4
 depends_on: [302, 103]
 priority: medium
@@ -57,11 +57,11 @@ No new public interface — `TaskDetailDrawerComponent`'s existing inputs (`Task
 
 ## Acceptance criteria
 
-- [ ] The Status segmented control shows one segment per column currently returned by `ColumnService.columns()`, including any custom columns created via the board — not just the 4 defaults.
-- [ ] The 4 default columns' segments read "Backlog", "To Do", "In Progress", "Done" (friendly labels via `columnDisplayLabel`), not raw wire names.
-- [ ] Clicking a segment still immediately calls `TaskService.move` with that column's raw `name` (not its display label, and not its numeric `Column.id`) — no Save click needed, exactly as before.
-- [ ] All of the drawer's other existing behavior (Priority immediate-apply, batched Save, delete confirmation, close, right-anchored panel styling) is unaffected — this task changes nothing else.
-- [ ] `ng build` succeeds.
+- [x] The Status segmented control shows one segment per column currently returned by `ColumnService.columns()`, including any custom columns created via the board — not just the 4 defaults.
+- [x] The 4 default columns' segments read "Backlog", "To Do", "In Progress", "Done" (friendly labels via `columnDisplayLabel`), not raw wire names.
+- [x] Clicking a segment still immediately calls `TaskService.move` with that column's raw `name` (not its display label, and not its numeric `Column.id`) — no Save click needed, exactly as before.
+- [x] All of the drawer's other existing behavior (Priority immediate-apply, batched Save, delete confirmation, close, right-anchored panel styling) is unaffected — this task changes nothing else.
+- [x] `ng build` succeeds.
 
 ## Out of scope
 

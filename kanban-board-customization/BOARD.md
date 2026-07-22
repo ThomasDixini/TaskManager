@@ -101,7 +101,6 @@ Source PRD: [../prd-board-customization.md](../prd-board-customization.md)
 | ID | Wave | Task |
 |----|------|------|
 | 401 | 4 | Board component — dynamic columns, add/rename/delete, drag-to-reorder |
-| 402 | 4 | Task detail drawer — dynamic Status segmented control |
 
 ## Done
 
@@ -114,4 +113,5 @@ Source PRD: [../prd-board-customization.md](../prd-board-customization.md)
 | 202 | 2 | Frontend Label service extended with create/update/delete |
 | 301 | 3 | Labels management UI in the Settings panel |
 | 302 | 3 | Frontend Column model + service |
+| 402 | 4 | Task detail drawer — dynamic Status segmented control |
 | 403 | 4 | Dashboard — verify stats stay correct with custom columns |

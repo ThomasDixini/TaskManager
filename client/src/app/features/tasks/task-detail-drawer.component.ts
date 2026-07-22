@@ -13,16 +13,13 @@ import { TaskService } from './task.service';
 import { Label } from '../labels/label.model';
 import { LabelService } from '../labels/label.service';
 import { ProjectService } from '../projects/project.service';
+import { ColumnService } from '../columns/column.service';
+import { columnDisplayLabel } from '../columns/column.model';
 import { SubtaskListComponent } from './subtask-list.component';
 import { CommentFeedComponent } from './comment-feed.component';
 
 export interface TaskDetailDrawerData {
   taskId: number;
-}
-
-interface ColumnOption {
-  value: BoardColumn;
-  label: string;
 }
 
 interface PriorityOption {
@@ -50,12 +47,9 @@ interface PriorityOption {
   styleUrl: './task-detail-drawer.component.scss',
 })
 export class TaskDetailDrawerComponent implements OnInit {
-  readonly columnOptions: ColumnOption[] = [
-    { value: 'Backlog', label: 'Backlog' },
-    { value: 'ToDo', label: 'To Do' },
-    { value: 'InProgress', label: 'In Progress' },
-    { value: 'Done', label: 'Done' },
-  ];
+  readonly columnOptions = computed(() =>
+    this.columnService.columns().map((c) => ({ value: c.name, label: columnDisplayLabel(c.name) }))
+  );
 
   readonly priorityOptions: PriorityOption[] = [
     { value: 'Low', label: 'Low' },
@@ -91,12 +85,14 @@ export class TaskDetailDrawerComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public readonly data: TaskDetailDrawerData,
     private readonly taskService: TaskService,
     protected readonly labelService: LabelService,
-    protected readonly projectService: ProjectService
+    protected readonly projectService: ProjectService,
+    protected readonly columnService: ColumnService
   ) {}
 
   async ngOnInit(): Promise<void> {
     this.labelService.load();
     this.projectService.load();
+    this.columnService.load();
 
     this.isLoading.set(true);
     try {

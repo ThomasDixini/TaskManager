@@ -68,7 +68,7 @@
         (change)="onStatusChange($event)"
         data-testid="status-toggle-group"
       >
-        @for (option of columnOptions; track option.value) {
+        @for (option of columnOptions(); track option.value) {
           <mat-button-toggle [value]="option.value" [attr.data-testid]="'status-option-' + option.value">
             {{ option.label }}
           </mat-button-toggle>
