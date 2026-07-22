@@ -25,6 +25,8 @@ export class BoardFilterState {
   readonly searchTerm = signal<string>('');
 }
 
+const MOBILE_BREAKPOINT = 860;
+
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -48,10 +50,12 @@ export class BoardFilterState {
 export class AppComponent implements OnInit {
   protected readonly title = 'client';
 
-  readonly sidebarOpen = signal(true);
+  readonly sidebarOpen = signal(!this.isNarrowViewport());
   readonly searchTerm = signal('');
 
   readonly projects = computed<Project[]>(() => this.projectService.projects());
+  readonly newProjectName = signal('');
+  readonly isCreatingProject = signal(false);
 
   constructor(
     protected readonly projectService: ProjectService,
@@ -67,6 +71,10 @@ export class AppComponent implements OnInit {
     this.sidebarOpen.update((open) => !open);
   }
 
+  closeSidebar(): void {
+    this.sidebarOpen.set(false);
+  }
+
   selectProject(projectId: number | null): void {
     this.filterState.selectedProjectId.set(projectId);
     this.router.navigate(['/board']);
@@ -76,11 +84,31 @@ export class AppComponent implements OnInit {
     return this.filterState.selectedProjectId() === projectId;
   }
 
+  async createProject(): Promise<void> {
+    const name = this.newProjectName().trim();
+    if (!name || this.isCreatingProject()) {
+      return;
+    }
+    this.isCreatingProject.set(true);
+    try {
+      await this.projectService.create(name);
+      this.newProjectName.set('');
+    } catch (err) {
+      console.error('Failed to create project', err);
+    } finally {
+      this.isCreatingProject.set(false);
+    }
+  }
+
   onSearchInput(value: string): void {
     this.searchTerm.set(value);
     this.filterState.searchTerm.set(value);
     if (value.trim().length > 0) {
       this.router.navigate(['/board']);
     }
+  }
+
+  private isNarrowViewport(): boolean {
+    return typeof window !== 'undefined' && window.innerWidth <= MOBILE_BREAKPOINT;
   }
 }

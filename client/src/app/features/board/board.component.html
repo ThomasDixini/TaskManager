@@ -2,7 +2,11 @@
   <div class="board__columns" cdkDropListGroup>
     @for (column of columns; track column.id) {
       <div class="board-column">
-        <div class="board-column__header">{{ column.label }}</div>
+        <div class="board-column__header">
+          <span class="board-column__title">{{ column.label }}</span>
+          <span class="board-column__count">{{ tasksFor(column.id).length }}</span>
+        </div>
+        <div class="board-column__hint">{{ column.hint }}</div>
 
         <div
           class="board-column__list"
@@ -25,13 +29,15 @@
 
         <div class="board-column__quick-add">
           <mat-form-field appearance="outline" class="board-column__quick-add-field">
-            <input
+            <textarea
               matInput
+              rows="1"
               placeholder="Add a task..."
               [ngModel]="quickAddTitleFor(column.id)"
               (ngModelChange)="setQuickAddTitle(column.id, $event)"
-              (keydown.enter)="onQuickAddSubmit(column.id)"
-            />
+              (keydown.enter)="onQuickAddKeydown($event, column.id)"
+              (keydown.escape)="cancelQuickAdd(column.id)"
+            ></textarea>
           </mat-form-field>
           <button mat-icon-button color="primary" (click)="onQuickAddSubmit(column.id)" aria-label="Add task">
             +

@@ -29,13 +29,41 @@
 }
 
 .board-column__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 0 4px;
+}
+
+.board-column__title {
   font-family: "Bricolage Grotesque", sans-serif;
   font-weight: 700;
   letter-spacing: -.01em;
   font-size: 14px;
-  margin-bottom: 12px;
-  padding: 0 4px;
   color: var(--ink);
+}
+
+.board-column__count {
+  font-family: "Instrument Sans", sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+  color: var(--ink-2);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.board-column__hint {
+  font-size: 12px;
+  color: var(--ink-2);
+  padding: 2px 4px 12px;
 }
 
 .board-column__list {
@@ -65,6 +93,12 @@
       min-height: unset;
       padding-top: 8px;
       padding-bottom: 8px;
+    }
+
+    textarea {
+      resize: none;
+      min-height: 20px;
+      max-height: 120px;
     }
   }
 }

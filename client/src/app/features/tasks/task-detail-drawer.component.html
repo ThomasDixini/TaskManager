@@ -96,6 +96,20 @@
       <input matInput type="date" formControlName="dueDate" data-testid="due-date-input" />
     </mat-form-field>
 
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Project</mat-label>
+      <mat-select
+        [value]="selectedProjectId()"
+        (selectionChange)="setProjectId($event.value)"
+        data-testid="project-select"
+      >
+        <mat-option [value]="null">No project</mat-option>
+        @for (project of projects; track project.id) {
+          <mat-option [value]="project.id">{{ project.name }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
     <div class="field-group">
       <label class="field-label">Labels</label>
       <div class="label-chip-list" data-testid="labels-list">

@@ -44,6 +44,7 @@ html {
   height: 100%;
   @include mat.theme((
     color: (
+      theme-type: light,
       primary: mat.$azure-palette,
       tertiary: mat.$blue-palette,
     ),
@@ -52,12 +53,15 @@ html {
   ));
 }
 
-body {
-  // Default the application to a light color theme. This can be changed to
-  // `dark` to enable the dark color theme, or to `light dark` to defer to the
-  // user's system settings.
+// `color-scheme` drives native form-control rendering (date pickers,
+// scrollbars, etc.) — kept in sync with our own `data-theme` attribute
+// rather than the OS preference, since theme here is a user toggle
+// (ThemeService), not `prefers-color-scheme`.
+:root {
   color-scheme: light;
+}
 
+body {
   font-family: "Instrument Sans", system-ui, sans-serif;
   background: var(--bg);
   color: var(--ink);
@@ -79,6 +83,8 @@ h1, h2, h3 {
 // Applied via `data-theme` / `data-density` attributes set on the document
 // root by ThemeService (client/src/app/core/theme.service.ts).
 :root[data-theme="dusk"] {
+  color-scheme: dark;
+
   --bg: #201B26;
   --surface: #2A2431;
   --surface-2: #322B3A;
@@ -92,6 +98,22 @@ h1, h2, h3 {
   --shadow-sm: 0 1px 2px rgba(0,0,0,.25);
   --shadow-md: 0 6px 18px rgba(0,0,0,.32);
   --shadow-lg: 0 22px 60px rgba(0,0,0,.5);
+
+  // Re-theme Angular Material components (form fields, selects, button
+  // toggles, sliders, checkboxes, dialogs, menus) for dark mode. Material's
+  // own `--mat-sys-*` tokens are independent of our custom properties above
+  // — without this second `mat.theme()` call, Material controls keep
+  // rendering with light-mode text/surface tokens (dark-on-dark, no
+  // contrast) even though the rest of the app has switched to dusk.
+  @include mat.theme((
+    color: (
+      theme-type: dark,
+      primary: mat.$azure-palette,
+      tertiary: mat.$blue-palette,
+    ),
+    typography: Roboto,
+    density: 0,
+  ));
 }
 :root[data-density="compact"] { --card-pad: 11px; --card-gap: 8px; --col-gap: 13px; font-size: 14px; }
 :root[data-density="comfy"] { --card-pad: 19px; --card-gap: 15px; --col-gap: 24px; font-size: 15.5px; }

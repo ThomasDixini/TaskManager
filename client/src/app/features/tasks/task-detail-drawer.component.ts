@@ -69,6 +69,7 @@ export class TaskDetailDrawerComponent implements OnInit {
   readonly isDeleting = signal(false);
   readonly showDeleteConfirm = signal(false);
   readonly selectedLabelIds = signal<string[]>([]);
+  readonly selectedProjectId = signal<number | null>(null);
 
   readonly form = new FormGroup({
     title: new FormControl('', { nonNullable: true, validators: [Validators.required] }),
@@ -77,12 +78,12 @@ export class TaskDetailDrawerComponent implements OnInit {
   });
 
   readonly projectName = computed(() => {
-    const detail = this.detail();
-    if (!detail || detail.projectId == null) {
+    const projectId = this.selectedProjectId();
+    if (projectId == null) {
       return 'No project';
     }
-    const project = this.projectService.projects().find((p) => p.id === detail.projectId);
-    return project?.name ?? `Project #${detail.projectId}`;
+    const project = this.projectService.projects().find((p) => p.id === projectId);
+    return project?.name ?? `Project #${projectId}`;
   });
 
   constructor(
@@ -107,6 +108,7 @@ export class TaskDetailDrawerComponent implements OnInit {
         dueDate: detail.dueDate,
       });
       this.selectedLabelIds.set([...detail.labelIds]);
+      this.selectedProjectId.set(detail.projectId);
     } catch (err) {
       console.error('Failed to load task detail', err);
     } finally {
@@ -144,7 +146,7 @@ export class TaskDetailDrawerComponent implements OnInit {
       const updated = await this.taskService.update(detail.id, {
         title: detail.title,
         description: detail.description,
-        projectId: detail.projectId,
+        projectId: this.selectedProjectId(),
         priority,
         dueDate: detail.dueDate,
         labelIds: detail.labelIds,
@@ -165,14 +167,29 @@ export class TaskDetailDrawerComponent implements OnInit {
     return this.selectedLabelIds().includes(labelId);
   }
 
+  get projects() {
+    return this.projectService.projects();
+  }
+
+  setProjectId(value: number | null): void {
+    this.selectedProjectId.set(value);
+  }
+
   onSubtasksChanged(subtasks: TaskDetail['subtasks']): void {
     this.detail.update((current) => (current ? { ...current, subtasks } : current));
+    this.taskService.patchLocal(this.data.taskId, {
+      subtaskTotal: subtasks.length,
+      subtaskDone: subtasks.filter((s) => s.done).length,
+    });
   }
 
   onCommentAdded(comment: TaskDetail['comments'][number]): void {
     this.detail.update((current) =>
       current ? { ...current, comments: [...current.comments, comment] } : current
     );
+    this.taskService.patchLocal(this.data.taskId, {
+      commentCount: this.detail()?.comments.length ?? 0,
+    });
   }
 
   async save(): Promise<void> {
@@ -187,7 +204,7 @@ export class TaskDetailDrawerComponent implements OnInit {
       await this.taskService.update(detail.id, {
         title: value.title,
         description: value.description,
-        projectId: detail.projectId,
+        projectId: this.selectedProjectId(),
         priority: detail.priority,
         dueDate: value.dueDate,
         labelIds: this.selectedLabelIds(),

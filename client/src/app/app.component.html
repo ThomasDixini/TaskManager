@@ -1,4 +1,7 @@
 <div class="shell">
+  @if (sidebarOpen()) {
+    <div class="sidebar-scrim" (click)="closeSidebar()"></div>
+  }
   <aside class="sidebar" [class.sidebar--collapsed]="!sidebarOpen()">
     <div class="sidebar__brand">
       <span class="sidebar__brand-mark">🌱</span>
@@ -42,6 +45,33 @@
           </li>
         }
       </ul>
+
+      <form class="sidebar__new-project" (ngSubmit)="createProject()">
+        <input
+          type="text"
+          placeholder="New project…"
+          [ngModel]="newProjectName()"
+          (ngModelChange)="newProjectName.set($event)"
+          name="newProjectName"
+          [disabled]="isCreatingProject()"
+        />
+        <button
+          type="submit"
+          class="sidebar__new-project-btn"
+          aria-label="Add project"
+          [disabled]="isCreatingProject()"
+        >
+          +
+        </button>
+      </form>
+    </div>
+
+    <div class="sidebar__footer">
+      <span class="sidebar__footer-avatar">Y</span>
+      <div class="sidebar__footer-text">
+        <span class="sidebar__footer-name">You</span>
+        <span class="sidebar__footer-workspace">Local workspace</span>
+      </div>
     </div>
   </aside>
 

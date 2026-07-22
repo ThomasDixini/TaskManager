@@ -66,4 +66,17 @@ export class TaskService {
   async getById(id: number): Promise<TaskDetail> {
     return firstValueFrom(this.http.get<TaskDetail>(`${environment.apiBaseUrl}/tasks/${id}`));
   }
+
+  /**
+   * Patches fields of an already-loaded task in the `tasks` list signal without
+   * a network round-trip. Used to keep board cards in sync with changes made
+   * via the detail drawer's child components (subtasks/comments), which own
+   * their mutations directly through their own services rather than through
+   * `TaskService`.
+   */
+  patchLocal(id: number, changes: Partial<Task>): void {
+    this._tasks.update((current) =>
+      current.map((task) => (task.id === id ? { ...task, ...changes } : task))
+    );
+  }
 }

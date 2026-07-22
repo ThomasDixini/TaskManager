@@ -26,6 +26,7 @@ import { BoardFilterState } from '../../app.component';
 interface ColumnDefinition {
   id: BoardColumn;
   label: string;
+  hint: string;
 }
 
 @Component({
@@ -47,10 +48,10 @@ interface ColumnDefinition {
 })
 export class BoardComponent implements OnInit {
   readonly columns: ColumnDefinition[] = [
-    { id: 'Backlog', label: 'Backlog' },
-    { id: 'ToDo', label: 'To Do' },
-    { id: 'InProgress', label: 'In Progress' },
-    { id: 'Done', label: 'Done' },
+    { id: 'Backlog', label: 'Backlog', hint: 'Ideas & someday' },
+    { id: 'ToDo', label: 'To Do', hint: 'This week' },
+    { id: 'InProgress', label: 'In Progress', hint: 'Focus now' },
+    { id: 'Done', label: 'Done', hint: 'Nice work' },
   ];
 
   readonly columnIds: BoardColumn[] = this.columns.map((c) => c.id);
@@ -147,6 +148,15 @@ export class BoardComponent implements OnInit {
     } catch (err) {
       console.error('Failed to create task', err);
     }
+  }
+
+  onQuickAddKeydown(event: Event, column: BoardColumn): void {
+    event.preventDefault();
+    void this.onQuickAddSubmit(column);
+  }
+
+  cancelQuickAdd(column: BoardColumn): void {
+    this.setQuickAddTitle(column, '');
   }
 
   openEditor(task: Task): void {
