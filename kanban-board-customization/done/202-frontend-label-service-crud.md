@@ -1,7 +1,7 @@
 ---
 id: 202
 title: Frontend Label service extended with create/update/delete
-status: in-progress
+status: done
 wave: 2
 depends_on: [101]
 priority: high
@@ -64,10 +64,10 @@ This exact public surface is what a later task (301, the Settings panel's Labels
 
 ## Acceptance criteria
 
-- [ ] `create('Waiting on Client', 'amber')` performs `POST /api/labels` with `{ name: 'Waiting on Client', tone: 'amber' }`, resolves with the created label (verify against the live backend — its `id` will be a slug like `waiting-on-client`), and the new label appears in `labels()` afterward.
-- [ ] `update(id, 'Bugs', 'rose')` performs `PUT /api/labels/{id}` with `{ name: 'Bugs', tone: 'rose' }`, resolves with the updated label, and `labels()` reflects the rename/recolor for that entry (same `id`, new `name`/`tone`) without affecting any other label in the list.
-- [ ] `delete(id)` performs `DELETE /api/labels/{id}` and, on resolution, that label is no longer present in `labels()`.
-- [ ] `ng build` succeeds.
+- [x] `create('Waiting on Client', 'amber')` performs `POST /api/labels` with `{ name: 'Waiting on Client', tone: 'amber' }`, resolves with the created label (verify against the live backend — its `id` will be a slug like `waiting-on-client`), and the new label appears in `labels()` afterward.
+- [x] `update(id, 'Bugs', 'rose')` performs `PUT /api/labels/{id}` with `{ name: 'Bugs', tone: 'rose' }`, resolves with the updated label, and `labels()` reflects the rename/recolor for that entry (same `id`, new `name`/`tone`) without affecting any other label in the list.
+- [x] `delete(id)` performs `DELETE /api/labels/{id}` and, on resolution, that label is no longer present in `labels()`.
+- [x] `ng build` succeeds.
 
 ## Out of scope
 

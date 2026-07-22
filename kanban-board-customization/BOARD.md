@@ -101,7 +101,6 @@ Source PRD: [../prd-board-customization.md](../prd-board-customization.md)
 | ID | Wave | Task |
 |----|------|------|
 | 201 | 2 | Columns API — list, create, rename, delete, reorder |
-| 202 | 2 | Frontend Label service extended with create/update/delete |
 
 ## Done
 
@@ -110,3 +109,4 @@ Source PRD: [../prd-board-customization.md](../prd-board-customization.md)
 | 101 | 1 | Labels API — create/update/delete endpoints |
 | 102 | 1 | Column entity + migration + TaskPositionService/TasksController/DTO updates |
 | 103 | 1 | Frontend `BoardColumn` type loosened to `string` |
+| 202 | 2 | Frontend Label service extended with create/update/delete |
