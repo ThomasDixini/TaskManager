@@ -1,21 +1,106 @@
 <div class="board">
-  <div class="board__columns" cdkDropListGroup>
-    @for (column of columns; track column.id) {
-      <div class="board-column">
-        <div class="board-column__header">
-          <span class="board-column__title">{{ column.label }}</span>
-          <span class="board-column__count">{{ tasksFor(column.id).length }}</span>
+  <div
+    class="board__columns"
+    cdkDropList
+    cdkDropListOrientation="horizontal"
+    cdkDropListGroup
+    [cdkDropListData]="columnService.columns()"
+    (cdkDropListDropped)="onColumnDrop($event)"
+  >
+    @for (column of columnService.columns(); track column.id) {
+      <div class="board-column" cdkDrag [cdkDragData]="column">
+        <div class="board-column__header" cdkDragHandle>
+          <div class="board-column__header-main">
+            <span class="board-column__title">{{ columnDisplayLabel(column.name) }}</span>
+            <span class="board-column__count">{{ tasksFor(column.name).length }}</span>
+          </div>
+          @if (column.hint) {
+            <span class="board-column__hint">{{ column.hint }}</span>
+          }
+
+          @if (!column.isDefault) {
+            <button
+              type="button"
+              mat-icon-button
+              class="board-column__menu-trigger"
+              [matMenuTriggerFor]="columnMenu"
+              aria-label="Column options"
+              data-testid="column-menu-trigger"
+            >
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #columnMenu="matMenu">
+              <button mat-menu-item (click)="startRenamingColumn(column)" data-testid="rename-column-button">
+                <mat-icon>edit</mat-icon>
+                <span>Rename</span>
+              </button>
+              <button mat-menu-item (click)="requestDeleteColumn(column)" data-testid="delete-column-button">
+                <mat-icon>delete</mat-icon>
+                <span>Delete</span>
+              </button>
+            </mat-menu>
+          }
         </div>
-        <div class="board-column__hint">{{ column.hint }}</div>
+
+        @if (renamingColumnId() === column.id) {
+          <div class="board-column__rename" data-testid="column-rename-form">
+            <input
+              type="text"
+              class="board-column__rename-input"
+              [ngModel]="renameDraft()"
+              (ngModelChange)="setRenameDraft($event)"
+              (keydown.enter)="renameColumn(column.id)"
+              (keydown.escape)="cancelRenameColumn()"
+              data-testid="rename-column-input"
+            />
+            <div class="board-column__rename-actions">
+              <button
+                type="button"
+                mat-button
+                [disabled]="isSavingRename()"
+                (click)="renameColumn(column.id)"
+                data-testid="save-rename-column-button"
+              >
+                Save
+              </button>
+              <button type="button" mat-button (click)="cancelRenameColumn()" data-testid="cancel-rename-column-button">
+                Cancel
+              </button>
+            </div>
+          </div>
+        }
+
+        @if (deleteConfirmColumnId() === column.id) {
+          <div class="board-column__delete-confirm" data-testid="column-delete-confirm">
+            <p class="board-column__delete-confirm-text">
+              Delete '{{ column.name }}'? Tasks in it will move to Backlog.
+            </p>
+            <div class="board-column__delete-confirm-actions">
+              <button
+                type="button"
+                mat-flat-button
+                color="warn"
+                [disabled]="isDeletingColumn()"
+                (click)="confirmDeleteColumn(column.id)"
+                data-testid="confirm-delete-column-button"
+              >
+                Yes
+              </button>
+              <button type="button" mat-button (click)="cancelDeleteColumn()" data-testid="cancel-delete-column-button">
+                Cancel
+              </button>
+            </div>
+          </div>
+        }
 
         <div
           class="board-column__list"
           cdkDropList
-          [id]="column.id"
-          [cdkDropListData]="tasksFor(column.id)"
+          [id]="column.name"
+          [cdkDropListData]="tasksFor(column.name)"
           (cdkDropListDropped)="onDrop($event)"
         >
-          @for (task of tasksFor(column.id); track task.id) {
+          @for (task of tasksFor(column.name); track task.id) {
             <div class="board-column__item" cdkDrag [cdkDragData]="task">
               <app-task-card
                 [task]="task"
@@ -35,15 +120,37 @@
               placeholder="Add a task..."
               [ngModel]="quickAddTitleFor(column.id)"
               (ngModelChange)="setQuickAddTitle(column.id, $event)"
-              (keydown.enter)="onQuickAddKeydown($event, column.id)"
+              (keydown.enter)="onQuickAddKeydown($event, column)"
               (keydown.escape)="cancelQuickAdd(column.id)"
             ></textarea>
           </mat-form-field>
-          <button mat-icon-button color="primary" (click)="onQuickAddSubmit(column.id)" aria-label="Add task">
+          <button mat-icon-button color="primary" (click)="onQuickAddSubmit(column)" aria-label="Add task">
             +
           </button>
         </div>
       </div>
     }
+
+    <div class="board-column board-column--ghost" data-testid="add-column-ghost">
+      <input
+        type="text"
+        class="board-column__add-input"
+        placeholder="+ Add column"
+        [ngModel]="newColumnName()"
+        (ngModelChange)="newColumnName.set($event)"
+        (keydown.enter)="addColumn()"
+        data-testid="new-column-name-input"
+      />
+      <button
+        type="button"
+        mat-flat-button
+        color="primary"
+        [disabled]="isAddingColumn() || !newColumnName().trim()"
+        (click)="addColumn()"
+        data-testid="add-column-button"
+      >
+        Add
+      </button>
+    </div>
   </div>
 </div>

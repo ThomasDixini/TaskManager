@@ -1,7 +1,7 @@
 ---
 id: 401
 title: Board component — dynamic columns, add/rename/delete, drag-to-reorder
-status: in-progress
+status: done
 wave: 4
 depends_on: [302, 103]
 priority: high
@@ -90,15 +90,15 @@ No new public interface — this task consumes `ColumnService`'s already-fixed p
 
 ## Acceptance criteria
 
-- [ ] The board renders columns from `columnService.columns()` (verify: the 4 defaults still appear, in their seeded order) instead of a hardcoded array.
-- [ ] Each column header shows its live task count and hint (default columns show their seeded hint; a newly-created custom column, which has `hint: null`, shows no hint line).
-- [ ] The default columns' headers still read "Backlog", "To Do", "In Progress", "Done" (friendly, spaced labels via `columnDisplayLabel`) — not the raw wire-format names "ToDo"/"InProgress".
-- [ ] Using "+ Add column" with a name creates a new column via `columnService.create()`, and it appears at the end of the row with a working quick-add and card drop target, identical in behavior to the defaults.
-- [ ] Default columns (Backlog/To Do/In Progress/Done) show no rename/delete affordance.
-- [ ] A custom column's overflow menu offers Rename and Delete; renaming it updates its header text immediately. Because `tasksFor` matches tasks to columns by name, and a rename changes that name out from under any already-loaded tasks, `renameColumn()` must also reload tasks afterward (same `taskService.load(...)` call used after delete) so the cards that were in that column keep appearing under its new name rather than vanishing from view.
-- [ ] Deleting a custom column that has at least one task in it shows a confirm step first; confirming calls `columnService.delete()`, then reloads tasks, and the task that was in the deleted column now appears under Backlog.
-- [ ] Dragging a column header to a new position calls `columnService.reorder()` with the full new id order, and the column row re-renders in that order; existing card drag-and-drop (within and between columns) continues to work exactly as before.
-- [ ] `ng build` succeeds; manually exercising the board (`ng serve`) shows no console errors through add/rename/delete/reorder/quick-add/card-drag.
+- [x] The board renders columns from `columnService.columns()` (verify: the 4 defaults still appear, in their seeded order) instead of a hardcoded array.
+- [x] Each column header shows its live task count and hint (default columns show their seeded hint; a newly-created custom column, which has `hint: null`, shows no hint line).
+- [x] The default columns' headers still read "Backlog", "To Do", "In Progress", "Done" (friendly, spaced labels via `columnDisplayLabel`) — not the raw wire-format names "ToDo"/"InProgress".
+- [x] Using "+ Add column" with a name creates a new column via `columnService.create()`, and it appears at the end of the row with a working quick-add and card drop target, identical in behavior to the defaults.
+- [x] Default columns (Backlog/To Do/In Progress/Done) show no rename/delete affordance.
+- [x] A custom column's overflow menu offers Rename and Delete; renaming it updates its header text immediately. Because `tasksFor` matches tasks to columns by name, and a rename changes that name out from under any already-loaded tasks, `renameColumn()` must also reload tasks afterward (same `taskService.load(...)` call used after delete) so the cards that were in that column keep appearing under its new name rather than vanishing from view.
+- [x] Deleting a custom column that has at least one task in it shows a confirm step first; confirming calls `columnService.delete()`, then reloads tasks, and the task that was in the deleted column now appears under Backlog.
+- [x] Dragging a column header to a new position calls `columnService.reorder()` with the full new id order, and the column row re-renders in that order; existing card drag-and-drop (within and between columns) continues to work exactly as before.
+- [x] `ng build` succeeds; manually exercising the board (`ng serve`) shows no console errors through add/rename/delete/reorder/quick-add/card-drag.
 
 ## Out of scope
 
