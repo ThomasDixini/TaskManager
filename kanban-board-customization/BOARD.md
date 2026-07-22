@@ -94,11 +94,13 @@ Source PRD: [../prd-board-customization.md](../prd-board-customization.md)
 | ~~401~~ | 4 | ~~Board component — dynamic columns, add/rename/delete, drag-to-reorder~~ | high | M | 302, 103 |
 | ~~402~~ | 4 | ~~Task detail drawer — dynamic Status segmented control~~ | medium | S | 302, 103 |
 | ~~403~~ | 4 | ~~Dashboard — verify stats stay correct with custom columns~~ | medium | S | 103 |
-| 501 | 5 | Final integration — full regression pass + new service test coverage | high | M | 401, 402, 403 |
+| ~~501~~ | 5 | ~~Final integration — full regression pass + new service test coverage~~ | high | M | 401, 402, 403 |
 
 ## In progress
 
-_(empty)_
+| ID | Wave | Task |
+|----|------|------|
+| 501 | 5 | Final integration — full regression pass + new service test coverage |
 
 ## Done
 

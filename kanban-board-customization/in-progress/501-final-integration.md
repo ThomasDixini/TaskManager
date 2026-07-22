@@ -1,7 +1,7 @@
 ---
 id: 501
 title: Final integration — full regression pass + new service test coverage
-status: backlog
+status: in-progress
 wave: 5
 depends_on: [401, 402, 403]
 priority: high
