@@ -47,8 +47,8 @@ public class LabelsController : ControllerBase
         var label = new Label
         {
             Id = id,
-            Name = request.Name,
-            Tone = request.Tone
+            Name = request.Name.Trim(),
+            Tone = request.Tone.ToLowerInvariant()
         };
 
         _db.Labels.Add(label);
@@ -73,8 +73,8 @@ public class LabelsController : ControllerBase
             return BadRequest($"Invalid tone. Must be one of: {string.Join(", ", ValidTones)}");
         }
 
-        label.Name = request.Name;
-        label.Tone = request.Tone;
+        label.Name = request.Name.Trim();
+        label.Tone = request.Tone.ToLowerInvariant();
 
         await _db.SaveChangesAsync();
 

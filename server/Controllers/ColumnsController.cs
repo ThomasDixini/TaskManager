@@ -33,11 +33,13 @@ public class ColumnsController : ControllerBase
     [HttpPost]
     public async Task<ActionResult<ColumnDto>> CreateColumn(CreateColumnRequest request)
     {
+        var trimmedName = request.Name.Trim();
+
         var nameCollision = await _db.Columns
-            .AnyAsync(c => c.Name.ToLower() == request.Name.ToLower());
+            .AnyAsync(c => c.Name.ToLower() == trimmedName.ToLower());
         if (nameCollision)
         {
-            return BadRequest($"A column named '{request.Name}' already exists.");
+            return BadRequest($"A column named '{trimmedName}' already exists.");
         }
 
         var maxPosition = await _db.Columns
@@ -47,7 +49,7 @@ public class ColumnsController : ControllerBase
 
         var column = new Column
         {
-            Name = request.Name,
+            Name = trimmedName,
             Hint = null,
             Position = position,
             IsDefault = false
@@ -76,14 +78,16 @@ public class ColumnsController : ControllerBase
             return BadRequest("Default columns cannot be renamed.");
         }
 
+        var trimmedName = request.Name.Trim();
+
         var nameCollision = await _db.Columns
-            .AnyAsync(c => c.Id != id && c.Name.ToLower() == request.Name.ToLower());
+            .AnyAsync(c => c.Id != id && c.Name.ToLower() == trimmedName.ToLower());
         if (nameCollision)
         {
-            return BadRequest($"A column named '{request.Name}' already exists.");
+            return BadRequest($"A column named '{trimmedName}' already exists.");
         }
 
-        column.Name = request.Name;
+        column.Name = trimmedName;
 
         await _db.SaveChangesAsync();
 

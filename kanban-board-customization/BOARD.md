@@ -19,8 +19,9 @@ Source PRD: [../prd-board-customization.md](../prd-board-customization.md)
 | 3 | 301, 302 | 2 | Labels management UI (Settings panel); frontend `Column` model + service + display-label helper |
 | 4 | 401, 402, 403 | 3 | Board: dynamic columns, add/rename/delete, drag-to-reorder; drawer's Status control now dynamic; Dashboard verified safe under custom columns |
 | 5 | 501 | 1 | Full regression pass + new unit tests for `ColumnService`/`LabelService` |
+| 6 | 601 | 1 | Post-review fix: trim/normalize Columns and Labels API input (REVIEW.md findings m1, m2) |
 
-11 tasks, 5 waves, max 3 parallel agents (waves 1 and 4).
+12 tasks, 6 waves, max 3 parallel agents (waves 1 and 4).
 
 ## Shared interfaces
 
@@ -95,6 +96,7 @@ Source PRD: [../prd-board-customization.md](../prd-board-customization.md)
 | ~~402~~ | 4 | ~~Task detail drawer — dynamic Status segmented control~~ | medium | S | 302, 103 |
 | ~~403~~ | 4 | ~~Dashboard — verify stats stay correct with custom columns~~ | medium | S | 103 |
 | ~~501~~ | 5 | ~~Final integration — full regression pass + new service test coverage~~ | high | M | 401, 402, 403 |
+| ~~601~~ | 6 | ~~Trim/normalize Columns and Labels API input~~ | medium | S | 201, 101 |
 
 ## In progress
 
@@ -115,3 +117,4 @@ _(empty)_
 | 402 | 4 | Task detail drawer — dynamic Status segmented control |
 | 403 | 4 | Dashboard — verify stats stay correct with custom columns |
 | 501 | 5 | Final integration — full regression pass + new service test coverage |
+| 601 | 6 | Post-review fix: trim/normalize Columns and Labels API input |
