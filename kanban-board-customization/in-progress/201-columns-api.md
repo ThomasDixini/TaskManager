@@ -1,7 +1,7 @@
 ---
 id: 201
 title: Columns API — list, create, rename, delete, reorder
-status: backlog
+status: in-progress
 wave: 2
 depends_on: [102]
 priority: high

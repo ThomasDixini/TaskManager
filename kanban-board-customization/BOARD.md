@@ -87,8 +87,8 @@ Source PRD: [../prd-board-customization.md](../prd-board-customization.md)
 | ~~101~~ | 1 | ~~Labels API — create/update/delete endpoints~~ | high | S | – |
 | ~~102~~ | 1 | ~~Column entity + migration + TaskPositionService/TasksController/DTO updates~~ | high | M | – |
 | ~~103~~ | 1 | ~~Frontend `BoardColumn` type loosened to `string`~~ | medium | S | – |
-| 201 | 2 | Columns API — list, create, rename, delete, reorder | high | M | 102 |
-| 202 | 2 | Frontend Label service extended with create/update/delete | high | S | 101 |
+| ~~201~~ | 2 | ~~Columns API — list, create, rename, delete, reorder~~ | high | M | 102 |
+| ~~202~~ | 2 | ~~Frontend Label service extended with create/update/delete~~ | high | S | 101 |
 | 301 | 3 | Labels management UI in the Settings panel | high | M | 202 |
 | 302 | 3 | Frontend Column model + service | high | S | 201 |
 | 401 | 4 | Board component — dynamic columns, add/rename/delete, drag-to-reorder | high | M | 302, 103 |
@@ -98,7 +98,10 @@ Source PRD: [../prd-board-customization.md](../prd-board-customization.md)
 
 ## In progress
 
-_(empty)_
+| ID | Wave | Task |
+|----|------|------|
+| 201 | 2 | Columns API — list, create, rename, delete, reorder |
+| 202 | 2 | Frontend Label service extended with create/update/delete |
 
 ## Done
 
