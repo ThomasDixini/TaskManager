@@ -1,7 +1,7 @@
 ---
 id: 302
 title: Frontend Column model + service
-status: backlog
+status: in-progress
 wave: 3
 depends_on: [201]
 priority: high

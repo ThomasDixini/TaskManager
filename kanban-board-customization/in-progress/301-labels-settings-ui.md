@@ -1,7 +1,7 @@
 ---
 id: 301
 title: Labels management UI in the Settings panel
-status: backlog
+status: in-progress
 wave: 3
 depends_on: [202]
 priority: high
