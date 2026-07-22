@@ -1,7 +1,7 @@
 ---
 id: 101
 title: Labels API — create/update/delete endpoints
-status: in-progress
+status: done
 wave: 1
 depends_on: []
 priority: high
@@ -90,14 +90,14 @@ This exact contract (routes, request/response shapes, slug-generation behavior, 
 
 ## Acceptance criteria
 
-- [ ] `POST /api/labels` with `{ "name": "Waiting on Client", "tone": "amber" }` returns `201` with `{ id: "waiting-on-client", name: "Waiting on Client", tone: "amber" }`.
-- [ ] `POST /api/labels` with a `name` that slugs to an existing id (e.g. posting "Bug" again when `bug` already exists) returns `201` with a de-duplicated id like `bug-2`.
-- [ ] `POST /api/labels` with `{ "name": "x", "tone": "neon-pink" }` (not one of the 7 known tones) returns `400`.
-- [ ] `PUT /api/labels/bug` with `{ "name": "Bugs", "tone": "rose" }` returns `200` with the label renamed/recolored, and `GET /api/labels` reflects the change; the label's `id` is still `bug`.
-- [ ] `PUT /api/labels/{nonexistent}` returns `404`.
-- [ ] `DELETE /api/labels/bug` on a label currently attached to at least one task (create a task, `PUT` it with `"labelIds": ["bug"]` first, via the existing Tasks API) returns `204`; a subsequent `GET /api/tasks/{id}` for that task shows `labelIds` no longer containing `"bug"`, and the task itself still exists.
-- [ ] `DELETE /api/labels/{nonexistent}` returns `404`.
-- [ ] `dotnet build` succeeds.
+- [x] `POST /api/labels` with `{ "name": "Waiting on Client", "tone": "amber" }` returns `201` with `{ id: "waiting-on-client", name: "Waiting on Client", tone: "amber" }`.
+- [x] `POST /api/labels` with a `name` that slugs to an existing id (e.g. posting "Bug" again when `bug` already exists) returns `201` with a de-duplicated id like `bug-2`.
+- [x] `POST /api/labels` with `{ "name": "x", "tone": "neon-pink" }` (not one of the 7 known tones) returns `400`.
+- [x] `PUT /api/labels/bug` with `{ "name": "Bugs", "tone": "rose" }` returns `200` with the label renamed/recolored, and `GET /api/labels` reflects the change; the label's `id` is still `bug`.
+- [x] `PUT /api/labels/{nonexistent}` returns `404`.
+- [x] `DELETE /api/labels/bug` on a label currently attached to at least one task (create a task, `PUT` it with `"labelIds": ["bug"]` first, via the existing Tasks API) returns `204`; a subsequent `GET /api/tasks/{id}` for that task shows `labelIds` no longer containing `"bug"`, and the task itself still exists.
+- [x] `DELETE /api/labels/{nonexistent}` returns `404`.
+- [x] `dotnet build` succeeds.
 
 ## Out of scope
 
