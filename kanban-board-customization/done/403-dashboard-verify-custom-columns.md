@@ -1,7 +1,7 @@
 ---
 id: 403
 title: Dashboard — verify stats stay correct with custom columns
-status: in-progress
+status: done
 wave: 4
 depends_on: [103]
 priority: medium
@@ -40,10 +40,10 @@ No new interface — this task does not change `DashboardComponent`'s public sha
 
 ## Acceptance criteria
 
-- [ ] A written-out reasoning comment exists above the `active`/`doing`/`done` computed signals in `dashboard.component.ts` explaining why the literal `'InProgress'`/`'Done'` comparisons remain safe under a dynamic column list.
-- [ ] A new or extended test in `dashboard.component.spec.ts` demonstrates: a task in a custom column (e.g. `'Review'`) is counted as active/open, is not counted as "in progress," and is not counted as "completed."
-- [ ] All of Dashboard's existing behavior (greeting, stat cards, today's-focus list + one-click mark-done, weekly progress ring, per-project list) continues to work exactly as before — confirmed by re-running the existing manual verification (or existing tests, if any) alongside the new one.
-- [ ] `ng build` and `ng test --watch=false` both succeed.
+- [x] A written-out reasoning comment exists above the `active`/`doing`/`done` computed signals in `dashboard.component.ts` explaining why the literal `'InProgress'`/`'Done'` comparisons remain safe under a dynamic column list.
+- [x] A new or extended test in `dashboard.component.spec.ts` demonstrates: a task in a custom column (e.g. `'Review'`) is counted as active/open, is not counted as "in progress," and is not counted as "completed."
+- [x] All of Dashboard's existing behavior (greeting, stat cards, today's-focus list + one-click mark-done, weekly progress ring, per-project list) continues to work exactly as before — confirmed by re-running the existing manual verification (or existing tests, if any) alongside the new one.
+- [x] `ng build` and `ng test --watch=false` both succeed.
 
 ## Out of scope
 

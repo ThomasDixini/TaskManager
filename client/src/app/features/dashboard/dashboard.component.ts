@@ -46,6 +46,17 @@ function parseLocalDate(dueDate: string | null): Date | null {
 export class DashboardComponent implements OnInit {
   readonly today = new Date();
 
+  // `Task.column` (aka `BoardColumn`) is a plain `string` since the board
+  // supports arbitrarily many user-defined columns (task 103). Despite that,
+  // comparing against the literal machine-form names 'InProgress' and 'Done'
+  // below remains correct: those two names belong to the board's protected
+  // default columns, and the Columns API (task 201) refuses any request to
+  // rename or delete a default column. So 'InProgress' always means exactly
+  // the In Progress column and 'Done' always means exactly the Done column,
+  // no matter how many custom columns (e.g. a 'Review' column sitting
+  // between them) exist. A task in a custom column is neither 'InProgress'
+  // nor 'Done', so it correctly falls out as "active" (not done) without
+  // being miscounted as "in progress".
   readonly active = computed<Task[]>(() =>
     this.taskService.tasks().filter((task) => task.column !== 'Done')
   );
